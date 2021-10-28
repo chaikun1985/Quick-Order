@@ -1,0 +1,399 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FD19935F-90AF-4952-AABA-1C0454748F8E}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Quick_Order</RootNamespace>
+    <AssemblyName>Quick Order</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Logo.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Charts.v12.1.Core, Version=12.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Data.v12.1, Version=12.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Office.v12.1.Core, Version=12.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.PivotGrid.v12.1.Core, Version=12.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v12.1.Core, Version=12.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.RichEdit.v12.1.Core, Version=12.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v12.1, Version=12.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraBars.v12.1, Version=12.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v12.1, Version=12.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v12.1, Version=12.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraGrid.v12.1, Version=12.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraLayout.v12.1, Version=12.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraPivotGrid.v12.1, Version=12.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPrinting.v12.1, Version=12.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraReports.v12.1, Version=12.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraTreeList.v12.1, Version=12.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net40\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.0.6\lib\net40\ICSharpCode.SharpZipLib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NPOI, Version=2.0.6.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.0.6\lib\net40\NPOI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NPOI.OOXML, Version=2.0.6.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.0.6\lib\net40\NPOI.OOXML.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net, Version=2.0.6.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.0.6\lib\net40\NPOI.OpenXml4Net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats, Version=2.0.6.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.0.6\lib\net40\NPOI.OpenXmlFormats.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.SQLite, Version=1.0.114.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.114.0\lib\net40\System.Data.SQLite.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.SQLite.EF6, Version=1.0.114.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.EF6.1.0.114.0\lib\net40\System.Data.SQLite.EF6.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq, Version=1.0.114.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Linq.1.0.114.0\lib\net40\System.Data.SQLite.Linq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Design" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AboutBox1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutBox1.Designer.cs">
+      <DependentUpon>AboutBox1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CommonUsages.cs" />
+    <Compile Include="CustomFonts.cs" />
+    <Compile Include="CustomScrollbar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomScrollbar.Designer.cs">
+      <DependentUpon>CustomScrollbar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DBClass.cs" />
+    <Compile Include="FittingsSettings.cs" />
+    <Compile Include="Form_NewPanelType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_NewPanelType.Designer.cs">
+      <DependentUpon>Form_NewPanelType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_NewProject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_NewProject.Designer.cs">
+      <DependentUpon>Form_NewProject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Report.Designer.cs">
+      <DependentUpon>Form_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_StartPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_StartPage.Designer.cs">
+      <DependentUpon>Form_StartPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Main.Designer.cs">
+      <DependentUpon>Form_Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Wait.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Wait.Designer.cs">
+      <DependentUpon>Form_Wait.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MyCombox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PanelSettings.cs" />
+    <Compile Include="PricesBook.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="RecentProjectClass.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SplashScreen1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SplashScreen1.Designer.cs">
+      <DependentUpon>SplashScreen1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SQLiteCreatClassProject.cs" />
+    <Compile Include="UserControl_GridView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl_GridView.Designer.cs">
+      <DependentUpon>UserControl_GridView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl_MenuItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl_MenuItem.Designer.cs">
+      <DependentUpon>UserControl_MenuItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XtraReport_QD.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="XtraReport_QD.Designer.cs">
+      <DependentUpon>XtraReport_QD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XtraReport_QDMasterDetail.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="XtraReport_QDMasterDetail.Designer.cs">
+      <DependentUpon>XtraReport_QDMasterDetail.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AboutBox1.resx">
+      <DependentUpon>AboutBox1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomScrollbar.resx">
+      <DependentUpon>CustomScrollbar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_NewPanelType.resx">
+      <DependentUpon>Form_NewPanelType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_NewProject.resx">
+      <DependentUpon>Form_NewProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Report.resx">
+      <DependentUpon>Form_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_StartPage.resx">
+      <DependentUpon>Form_StartPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Main.resx">
+      <DependentUpon>Form_Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Wait.resx">
+      <DependentUpon>Form_Wait.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SplashScreen1.resx">
+      <DependentUpon>SplashScreen1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl_GridView.resx">
+      <DependentUpon>UserControl_GridView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl_MenuItem.resx">
+      <DependentUpon>UserControl_MenuItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XtraReport_QD.resx">
+      <DependentUpon>XtraReport_QD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XtraReport_QDMasterDetail.resx">
+      <DependentUpon>XtraReport_QDMasterDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pic_close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pic_max.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pic_min.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pic_nomalform.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon_Menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon_MainPage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon_Save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon_新建项目.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo18.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon_Back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon_打印机.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\QO_LOGO.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Logo.ico" />
+    <None Include="Resources\主机配置图\NCA.jpg" />
+    <None Include="Resources\主机配置图\消火栓报警按钮.jpg" />
+    <None Include="Resources\主机配置图\网络显示器.jpg" />
+    <None Include="Resources\主机配置图\探测器.jpg" />
+    <None Include="Resources\主机配置图\手动报警与按钮消火栓_安装盒.jpg" />
+    <None Include="Resources\主机配置图\手动报警报警按钮.jpg" />
+    <None Include="Resources\主机配置图\声光.jpg" />
+    <None Include="Resources\主机配置图\普通底座.JPG" />
+    <None Include="Resources\主机配置图\模块.jpg" />
+    <None Include="Resources\主机配置图\楼层显示器含安装盒.jpg" />
+    <None Include="Resources\主机配置图\带蜂鸣器底座.jpg" />
+    <None Include="Resources\主机配置图\编码器_CP900.jpg" />
+    <None Include="Resources\主机配置图\NCS.jpg" />
+    <None Include="Resources\A.png" />
+    <None Include="Resources\主机配置图\LRS-WM-350-25.jpg" />
+    <None Include="Resources\主机配置图\BT-12M20AC.jpg" />
+    <None Include="Resources\主机配置图\6000P_壁挂_主机正面_基础配置.png" />
+    <None Include="Resources\主机配置图\6000P_壁挂_主机开机正面__基础配置.png" />
+    <None Include="Resources\主机配置图\6000P_壁挂_主机开机正面__背板.png" />
+    <None Include="Resources\LRS-WM-350-25.jpg" />
+    <None Include="Resources\BT-12M20AC.jpg" />
+    <None Include="Resources\6000P_壁挂_主机正面_基础配置.png" />
+    <None Include="Resources\6000P_壁挂_主机开机正面__基础配置.png" />
+    <None Include="Resources\6000P_壁挂_主机开机正面__背板.png" />
+    <None Include="Resources\主机配置图\主机开机正面__背板_空.png" />
+    <None Include="Resources\主机配置图\主机开机正面__背板_有设备.png" />
+    <None Include="Resources\主机配置图\主机背面__背板_空.png" />
+    <None Include="Resources\主机配置图\主机背面__背板_有设备.png" />
+    <None Include="Resources\主机配置图\主机背面__线槽_空.png" />
+    <None Include="Resources\主机配置图\主机背面__线槽_有设备.png" />
+    <None Include="Resources\主机配置图\主机开机正面__线槽_空.png" />
+    <None Include="Resources\主机配置图\主机开机正面__线槽_有设备.png" />
+    <None Include="Resources\Icon_UnChecked - 2.png" />
+    <None Include="Resources\icon_收缩.png" />
+    <None Include="Resources\编辑.png" />
+    <None Include="Resources\控制器.png" />
+    <None Include="Resources\主机配置图\主机背面__背板.png" />
+    <None Include="Resources\主机配置图\主机背面__线槽.png" />
+    <None Include="Resources\主机配置图\主机正面_基础配置02.png" />
+    <None Include="Resources\主机配置图\主机正面_基础配置01.png" />
+    <None Include="Resources\主机配置图\主机开机正面__背板.png" />
+    <None Include="Resources\主机配置图\主机开机正面__线槽.png" />
+    <None Include="Resources\Icon_新建.png" />
+    <None Include="Resources\主机配置图\主机背面__基础配置.png" />
+    <None Include="Resources\主机配置图\主机背面__POM.png" />
+    <None Include="Resources\主机配置图\主机背面__Model.png" />
+    <None Include="Resources\主机配置图\主机背面__02.png" />
+    <None Include="Resources\主机配置图\主机背面__01.png" />
+    <None Include="Resources\主机配置图\主机背面__ 光纤网卡.png" />
+    <None Include="Resources\主机配置图\主机正面_基础配置.png" />
+    <None Include="Resources\主机配置图\主机正面_打印机.png" />
+    <None Include="Resources\主机配置图\主机正面_Pow.png" />
+    <None Include="Resources\主机配置图\主机正面_ACM.png" />
+    <None Include="Resources\主机配置图\主机开机正面_黑盒子.png" />
+    <None Include="Resources\主机配置图\主机开机正面_基础配置.png" />
+    <None Include="Resources\主机配置图\主机开机正面_低速网卡.png" />
+    <None Include="Resources\主机配置图\主机开机正面_中速网卡.png" />
+    <None Include="Resources\主机配置图\主机开机正面_MB.png" />
+    <None Include="Resources\主机配置图\主机开机正面_LCM.png" />
+    <None Include="Resources\主机配置图\主机开机正面__02.png" />
+    <None Include="Resources\主机配置图\主机开机正面__01.png" />
+    <None Include="Resources\主机配置图\LPI-modbus 3.0_1.png" />
+    <None Include="Resources\删除.png" />
+    <None Include="Resources\Icon_UnChecked.png" />
+    <None Include="Resources\Icon_Checked.png" />
+    <None Include="Resources\icon_产品配置.png" />
+    <None Include="Resources\icon_保存.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.114.0\build\net40\Stub.System.Data.SQLite.Core.NetFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.114.0\build\net40\Stub.System.Data.SQLite.Core.NetFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <Import Project="..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.114.0\build\net40\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.114.0\build\net40\Stub.System.Data.SQLite.Core.NetFramework.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
