@@ -14,6 +14,7 @@ using NPOI.HSSF.UserModel;
 using NPOI.SS.Util;
 using NPOI.XSSF.UserModel;
 using System.Text.RegularExpressions;
+using DevExpress.XtraEditors;
 
 namespace Quick_Order
 {
@@ -21,6 +22,7 @@ namespace Quick_Order
     {
         public delegate void BackToStartDelegate();
         public BackToStartDelegate DoBackToStart;
+        public int ComboBox_NewPanel_POMCount_OldIndex = 0;
 
         public Form_Main()
         {
@@ -90,7 +92,7 @@ namespace Quick_Order
 
             XtraTabControl_LeftPage.ShowTabHeader = DevExpress.Utils.DefaultBoolean.False;
             XtraTabControl_MainPage.ShowTabHeader = DevExpress.Utils.DefaultBoolean.False;
-            XtraTabControl_RightPage.ShowTabHeader = DevExpress.Utils.DefaultBoolean.False;                      
+            XtraTabControl_RightPage.ShowTabHeader = DevExpress.Utils.DefaultBoolean.False;
 
             GridControl_PanelList.DataSource = DBClass.GetInstance().ProjectMemoryTable;
             GridView_PanelList.ActiveFilterString = string.Format("[Cat] = 'Panel'");
@@ -120,6 +122,15 @@ namespace Quick_Order
             rItemComboBox_MiddleFittings_Count.Items.Clear();
             for (int ii = 0; ii <= 100; ii++)
                 rItemComboBox_MiddleFittings_Count.Items.Add(ii);
+
+            PictureSize.Add("LCM-2PG", FrontOpenLCMSize);
+            PictureSize.Add("NCM-F-6P", new Size(39, 30));//光纤网卡
+            PictureSize.Add("NCM-WF-6P", FrontOpenNetCardMediumSize); //中速网卡
+            PictureSize.Add("NCM-W-6P", FrontOpenNetCardLowSize);//低速网卡
+            PictureSize.Add("LPI-MODBUS-V3", new Size(39, 30)); //回路设备接口卡 
+            PictureSize.Add("FECBUS", new Size(39, 30)); //FECBUS
+            PictureSize.Add("uPRT-6P-KIT", new Size(39, 13)); //打印机
+            PictureSize.Add("BB-6000P", FrontOpenBlackBoxSize); //黑盒子
 
             SplashScreenManager.CloseForm(false);
         }
@@ -181,7 +192,7 @@ namespace Quick_Order
             if (this.WindowState == FormWindowState.Normal)
             {
                 this.WindowState = FormWindowState.Maximized;
-                pictureBoxMaxForm.Image = Properties.Resources.pic_nomalform;
+                pictureBoxMaxForm.Image = Properties.Resources.pic_min1;
                 toolTip1.SetToolTip(pictureBoxMaxForm, "恢复");
             }
             else
@@ -237,22 +248,33 @@ namespace Quick_Order
 
         private void PictureBox_SaveProject_Click(object sender, EventArgs e)
         {
-            if (CommonUsages.CurrentProjectPath == "")
-            {
-                Form_NewProject newForm = new Form_NewProject();
-                if (newForm.ShowDialog() != DialogResult.OK)
-                {
-                    return;
-                }
+            //if (!System.IO.File.Exists(Form_NewProject.SelectedProjectPath))
+            //{
+            //File.Delete();
+            //Form_NewProject newForm = new Form_NewProject();
+            //newForm.Button_Save.Text = "另存";
+            //newForm.TextBox_ProjectName.Text = Path.GetFileNameWithoutExtension(CommonUsages.CurrentProjectPath);
+            //newForm.TextBox_ProjectFolder.Text = Path.GetDirectoryName(CommonUsages.CurrentProjectPath);
+            //if (newForm.ShowDialog() != DialogResult.OK)
+            //{
+            //    return;
+            //}
+            
+            //if (!System.IO.File.Exists(Form_NewProject.SelectedProjectPath))
+            //{
+            //    //删掉已经更新的文件
+            //    File.Delete(CommonUsages.CurrentProjectPath);
+            //    CommonUsages.RecentProjectClassInst.DeleteProjectrow(CommonUsages.CurrentProjectPath);
 
-                string errMsg = "";
-                if (NewAProject(Form_NewProject.SelectedProjectPath, ref errMsg) == false)
-                {
-                    CommonUsages.MyMsgBox(string.Format("新建项目出错。 {0}", errMsg), CommonUsages.MsgBoxTypeEnum.Error);
-                    return;
-                }
-            }
-
+            //    string errMsg = "";
+            //    if (NewAProject(Form_NewProject.SelectedProjectPath, ref errMsg) == false)
+            //    {
+            //        CommonUsages.MyMsgBox(string.Format("新建项目出错。 {0}", errMsg), CommonUsages.MsgBoxTypeEnum.Error);
+            //        return;
+            //    }
+            //}
+            //}
+            //目前这里只是单纯的保存功能
             SaveProject();
         }
 
@@ -261,9 +283,9 @@ namespace Quick_Order
             PictureBox_SaveProject_Click(PictureBox_SaveProject, e);
         }
 
-        private bool NewAProject(string newProjectPath,ref string errMsg)
+        private bool NewAProject(string newProjectPath, ref string errMsg)
         {
-            CommonUsages.CurrentProjectPath = newProjectPath;          
+            CommonUsages.CurrentProjectPath = newProjectPath;
 
             SQLiteCreatClassProject.SQLiteCreatClassInit(newProjectPath);
 
@@ -331,6 +353,9 @@ namespace Quick_Order
             }
 
             DoBackToStart?.Invoke();
+            DBClass.GetInstance().ModelSettingsMemoryTable.Clear();
+            DBClass.GetInstance().ProjectMemoryTable.Clear();
+            
             this.Close();
         }
 
@@ -338,7 +363,8 @@ namespace Quick_Order
         {
             Label_TabHeader_Panel.ForeColor = Color.Black;
             Label_TabHeader_Fittings.ForeColor = Color.FromArgb(96, 96, 96);
-            Panel_TabHeader_Focus.Location = new Point(0, 44);
+            Panel_TabHeader_Focus.Location = new Point(0, 38);
+            // Panel_TabHeader_Focus.Location = new Point(151, 44);
 
             XtraTabControl_LeftPage.SelectedTabPage = XtraTabPage_LeftPage_Panel;
             XtraTabControl_MainPage.SelectedTabPage = XtraTabPage_MainPage_Panel;
@@ -349,11 +375,14 @@ namespace Quick_Order
         {
             Label_TabHeader_Panel.ForeColor = Color.FromArgb(96, 96, 96);
             Label_TabHeader_Fittings.ForeColor = Color.Black;
-            Panel_TabHeader_Focus.Location = new Point(116, 44);
+            Panel_TabHeader_Focus.Location = new Point(116, 38);
 
             XtraTabControl_LeftPage.SelectedTabPage = XtraTabPage_LeftPage_Fittings;
             XtraTabControl_MainPage.SelectedTabPage = XtraTabPage_MainPage_Fittings;
             XtraTabControl_RightPage.SelectedTabPage = XtraTabPage_RightPage_FittingsList;
+
+            PictureBox_ConetextMenu.Image = Properties.Resources.Icon_Menu;
+            PictureBox_ConetextMenu.Tag = "Menu";
         }
 
         private void Button_NewPanelSettings_Click(object sender, EventArgs e)
@@ -367,6 +396,8 @@ namespace Quick_Order
             XtraTabControl_LeftPage.SelectedTabPage = XtraTabPage_LeftPage_SpecPanel;
             PictureBox_ConetextMenu.Image = Properties.Resources.Icon_Back;
             PictureBox_ConetextMenu.Tag = "Back";
+            CheckEdit_NewPanelPrinter.Checked = false;
+            CheckEdit_NewPanelBlackBox.Checked = false;
 
             Int64 id = DBClass.GetInstance().GetCurrentMaxProjectID();
             if (Form_NewPanelType.SelectedProjectType == BasicPanelSettings.PANELTYPE_N6000P)
@@ -375,7 +406,7 @@ namespace Quick_Order
             }
             if (Form_NewPanelType.SelectedProjectType == BasicPanelSettings.PANELTYPE_N6000PBIGUA)
             {
-                CurrentPanelSettings = new Quick_Order.N6000PBiGuaSettings(id, Form_NewPanelType.SelectedProjectLabel);               
+                CurrentPanelSettings = new Quick_Order.N6000PBiGuaSettings(id, Form_NewPanelType.SelectedProjectLabel);
             }
 
             DBClass.GetInstance().AddANewPanel(CurrentPanelSettings);
@@ -390,6 +421,8 @@ namespace Quick_Order
             {
                 return;
             }
+            CheckEdit_NewPanelPrinter.Checked = false;
+            CheckEdit_NewPanelBlackBox.Checked = false;
 
             Int64 id = DBClass.GetInstance().GetCurrentMaxProjectID();
             if (Form_NewPanelType.SelectedProjectType == BasicPanelSettings.PANELTYPE_N6000P)
@@ -421,7 +454,7 @@ namespace Quick_Order
                 Panel_MainMenu.Location = new Point(0, 32);
                 Panel_MainMenu.Visible = true;
             }
-        }       
+        }
 
         private void PictureBox_ConetextMenu2_Click(object sender, EventArgs e)
         {
@@ -552,7 +585,7 @@ namespace Quick_Order
                 }
 
                 RefreshLeftSpecPanel();
-                RefreshMainPage(AimPage.All);              
+                RefreshMainPage(AimPage.All);
                 GridView_PanelSettingList.ActiveFilterString = string.Format("[ItemID] = '{0}'", panelID);
 
                 Panel_Pages.Visible = true;
@@ -634,9 +667,12 @@ namespace Quick_Order
             }
             else
             {
-                string systemName = GridView_LeftPage_FittingSystem.GetFocusedRowCellValue("SystemName").ToString();
-                string filterString = string.Format("[SystemName] = '{0}'", systemName);
-                GridView_MiddleFittingList.ActiveFilterString = filterString;
+                DevExpress.XtraGrid.Views.Grid.GridView dView = e.PreviousView as DevExpress.XtraGrid.Views.Grid.GridView;
+                dView.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.GridView_LeftPage_FittingBrandDetail_CustomDrawCell);
+                GridView_LeftPage_FittingSystem.RefreshData();
+                //string systemName = GridView_LeftPage_FittingSystem.GetFocusedRowCellValue("SystemName").ToString();
+                //string filterString = string.Format("[SystemName] = '{0}'", systemName);
+                //GridView_MiddleFittingList.ActiveFilterString = filterString;
             }
         }
 
@@ -650,7 +686,7 @@ namespace Quick_Order
             dView.Columns["SystemName"].Visible = false;
             dView.Columns["Brand"].OptionsColumn.ReadOnly = true;
             dView.Columns["Brand"].OptionsColumn.AllowEdit = false;
-            dView.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(GridView_LeftPage_FittingBrandDetail_FocusedRowChanged);        
+            dView.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(GridView_LeftPage_FittingBrandDetail_FocusedRowChanged);
         }
 
         private void GridView_LeftPage_FittingBrandDetail_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
@@ -673,6 +709,9 @@ namespace Quick_Order
             else
             {
                 GridView_LeftPage_FittingSystem.ExpandMasterRow(GridView_LeftPage_FittingSystem.FocusedRowHandle);
+                string systemName = GridView_LeftPage_FittingSystem.GetFocusedRowCellValue("SystemName").ToString();
+                string filterString = string.Format("[SystemName] = '{0}'", systemName);
+                GridView_MiddleFittingList.ActiveFilterString = filterString;
             }
         }
         #endregion
@@ -680,10 +719,12 @@ namespace Quick_Order
         #endregion
 
         #region "Fill Main Page Pictures"
-
+        // private string PictureName = string.Empty;
+        private Dictionary<string, Size> PictureSize = new Dictionary<string, Size>();
         private List<Point> FrontPOMPrinterLocation = new List<Point> {new Point(0,0), new Point(0,0), new Point(31, 156), new Point(31, 198), new Point(31, 241), new Point(31, 282),
                                                new Point(31, 328), new Point(31, 370), new Point(31, 413), new Point(31, 453)};
         private Size FrontPOMACMSize = new Size(137, 33);
+
         private Size FrontPrinterSize = new Size(139, 35);
 
         private List<Point> FrontOpenLCMLocation = new List<Point> {new Point(0,0), new Point(0,0), new Point(86, 46), new Point(113, 46), new Point(140, 46),
@@ -706,7 +747,7 @@ namespace Quick_Order
 
         private List<Point> BackOpenBeibanLocation = new List<Point> { new Point(0, 0), new Point(0, 0), new Point(22, 178), new Point(22, 265), new Point(22, 333) };
         private Size BackOpenBeibanSize = new Size(156, 49);
-        private List<Point> BackOpenXianChaoLocation = new List<Point> { new Point(0, 0), new Point(0, 0), new Point(22, 228), new Point(22,247), new Point(22, 315), new Point(22, 383) };
+        private List<Point> BackOpenXianChaoLocation = new List<Point> { new Point(0, 0), new Point(0, 0), new Point(22, 228), new Point(22, 247), new Point(22, 315), new Point(22, 383) };
         private Size BackOpenXianChaoSize = new Size(156, 19);
 
         private List<Point> BackLeftLocation = new List<Point> { new Point(0, 0), new Point(28, 110), new Point(28, 183), new Point(28, 270), new Point(28, 338) };
@@ -718,7 +759,7 @@ namespace Quick_Order
         private Size BackPOMSize = new Size(76, 39);  //new Size(76, 42);
 
 
-        private List<Point> BiGuaFrontPOMPrinterLocation = new List<Point> {new Point(0,0), new Point(0,0), new Point(31, 144), new Point(31, 185)};
+        private List<Point> BiGuaFrontPOMPrinterLocation = new List<Point> { new Point(0, 0), new Point(0, 0), new Point(31, 144), new Point(31, 185) };
         private Size BiGuaFrontPOMACMPrinterSize = new Size(137, 33);
 
         private List<Point> BiGuaFrontOpenLCMLocation = new List<Point> {new Point(0,0), new Point(0,0), new Point(89, 23), new Point(116, 23), new Point(143, 23),
@@ -728,8 +769,8 @@ namespace Quick_Order
         private List<Point> BiGuaFrontOpenBeibanLocation = new List<Point> { new Point(0, 0), new Point(0, 0), new Point(17, 91), new Point(17, 164) };
         private Size BiGuaFrontOpenBeibanSize = new Size(166, 57);
 
-        private List<Point> BiGuaFrontOpenLeft = new List<Point> { new Point(0, 0),  new Point(25, 35), new Point(25, 107), new Point(25, 173) };
-        private List<Point> BiGuaFrontOpenRight = new List<Point> { new Point(0, 0), new Point(0, 0) , new Point(112, 104), new Point(112, 174)};
+        private List<Point> BiGuaFrontOpenLeft = new List<Point> { new Point(0, 0), new Point(25, 35), new Point(25, 107), new Point(25, 173) };
+        private List<Point> BiGuaFrontOpenRight = new List<Point> { new Point(0, 0), new Point(0, 0), new Point(112, 104), new Point(112, 174) };
 
         enum AimPage
         {
@@ -744,8 +785,16 @@ namespace Quick_Order
         {
             if (CurrentPanelSettings == null) return;
 
-            if (CurrentPanelSettings.PanelType == BasicPanelSettings.PANELTYPE_N6000P) PictureBox_BackBasic.Visible = true;
-            if (CurrentPanelSettings.PanelType == BasicPanelSettings.PANELTYPE_N6000PBIGUA) PictureBox_BackBasic.Visible = false;
+            if (CurrentPanelSettings.PanelType == BasicPanelSettings.PANELTYPE_N6000P)
+            {
+                PictureBox_BackBasic.Visible = true;
+                lbInnerBack.Visible = true;
+            }
+            if (CurrentPanelSettings.PanelType == BasicPanelSettings.PANELTYPE_N6000PBIGUA)
+            {
+                PictureBox_BackBasic.Visible = false;
+                lbInnerBack.Visible = false;
+            }
 
             if (pageNo == AimPage.LeftPage || pageNo == AimPage.All)
             {
@@ -786,10 +835,10 @@ namespace Quick_Order
             }
         }
 
-        private BasicPanelSettings CurrentPanelSettings = null;   
+        public BasicPanelSettings CurrentPanelSettings = null;
         private void PictureBox_FrontBasic_Paint(object sender, PaintEventArgs e)
         {
-            DrawFrontBasic(e.Graphics, CurrentPanelSettings);            
+            DrawFrontBasic(e.Graphics, CurrentPanelSettings);
         }
 
         private void PictureBox_FrontOpenBasic_Paint(object sender, PaintEventArgs e)
@@ -882,13 +931,17 @@ namespace Quick_Order
                     }
 
                     //画BB
-                    if ((curPanelSettings as N6000PPanelSettings).HaveNCMLowMedium() == true)
+                    if ((curPanelSettings as N6000PPanelSettings).HaveNCMLowMedium() == true && curPanelSettings.BlackBoxCount > 0)
                     {
                         g.DrawImage(Properties.Resources.主机开机正面_黑盒子, FrontOpenLeft[2].X, FrontOpenLeft[2].Y, FrontOpenBlackBoxSize.Width, FrontOpenBlackBoxSize.Height);
                     }
                     else
                     {
-                        g.DrawImage(Properties.Resources.主机开机正面_黑盒子, FrontOpenLeft[1].X, FrontOpenLeft[1].Y, FrontOpenBlackBoxSize.Width, FrontOpenBlackBoxSize.Height);
+                        if (curPanelSettings.BlackBoxCount > 0)
+                        {
+                            g.DrawImage(Properties.Resources.主机开机正面_黑盒子, FrontOpenLeft[1].X, FrontOpenLeft[1].Y, FrontOpenBlackBoxSize.Width, FrontOpenBlackBoxSize.Height);
+                        }
+
                     }
                 }
                 if (curPanelSettings.PanelType == BasicPanelSettings.PANELTYPE_N6000PBIGUA)
@@ -923,13 +976,17 @@ namespace Quick_Order
                     }
 
                     //画BB
-                    if ((curPanelSettings as N6000PBiGuaSettings).HaveNCMLowMedium() == true)
+                    if ((curPanelSettings as N6000PBiGuaSettings).HaveNCMLowMedium() == true && curPanelSettings.BlackBoxCount > 0)
                     {
                         g.DrawImage(Properties.Resources.主机开机正面_黑盒子, BiGuaFrontOpenLeft[2].X, BiGuaFrontOpenLeft[2].Y, FrontOpenBlackBoxSize.Width, FrontOpenBlackBoxSize.Height);
                     }
                     else
                     {
-                        g.DrawImage(Properties.Resources.主机开机正面_黑盒子, BiGuaFrontOpenLeft[1].X, BiGuaFrontOpenLeft[1].Y, FrontOpenBlackBoxSize.Width, FrontOpenBlackBoxSize.Height);
+                        if (curPanelSettings.BlackBoxCount > 0)
+                        {
+                            g.DrawImage(Properties.Resources.主机开机正面_黑盒子, BiGuaFrontOpenLeft[1].X, BiGuaFrontOpenLeft[1].Y, FrontOpenBlackBoxSize.Width, FrontOpenBlackBoxSize.Height);
+                        }
+                        //g.DrawImage(Properties.Resources.主机开机正面_黑盒子, BiGuaFrontOpenLeft[1].X, BiGuaFrontOpenLeft[1].Y, FrontOpenBlackBoxSize.Width, FrontOpenBlackBoxSize.Height);
                     }
 
                     //画POM卡
@@ -1021,7 +1078,7 @@ namespace Quick_Order
 
         private Point GetBackNonePOMLocation(int nonePOMIndex, int POMCount)
         {
-            //非POM最多4块，可站位右面
+            //非POM最多4块，可站位右面，现在可以有5块
             Point nonePOMPoint = new Point(BackLeftLocation[1].X, BackLeftLocation[1].Y);
 
             if (nonePOMIndex <= 2)
@@ -1052,6 +1109,21 @@ namespace Quick_Order
                 else
                 {
                     nonePOMPoint = new Point(BackLeftLocation[4].X, BackLeftLocation[4].Y);
+                }
+            }
+            if (nonePOMIndex == 5)
+            {
+                if (POMCount == 1)
+                {
+                    nonePOMPoint = new Point(BackRightLocation[3].X, BackRightLocation[3].Y);
+                }
+                else if (POMCount == 2)
+                {
+                    nonePOMPoint = new Point(BackLeftLocation[4].X, BackLeftLocation[4].Y);
+                }
+                else   //pom卡只能有3个
+                {
+                    nonePOMPoint = new Point(BackRightLocation[4].X, BackRightLocation[4].Y);
                 }
             }
 
@@ -1108,7 +1180,7 @@ namespace Quick_Order
             Graphics g = Graphics.FromImage(image);
 
             DrawFrontBasic(g, curPanelSettings);
-           
+
             return image;
         }
 
@@ -1123,7 +1195,7 @@ namespace Quick_Order
             Graphics g = Graphics.FromImage(image);
 
             DrawFrontOpen(g, curPanelSettings);
-            
+
             return image;
         }
 
@@ -1166,7 +1238,7 @@ namespace Quick_Order
             for (int ii = 1; ii <= maxPOM; ii++)
             {
                 ComboBox_NewPanel_POMCount.Properties.Items.Add(ii);
-            }            
+            }
         }
 
         private void RefreshLeftSpecPanel()
@@ -1185,7 +1257,7 @@ namespace Quick_Order
             {
                 CheckEdit_NewPanel_NCMHigh.Checked = true;
                 ComboBox_NewPanel_NCMHighCount.Text = CurrentPanelSettings.NCMHighCount.ToString();
-            }                
+            }
             else
                 CheckEdit_NewPanel_NCMHigh.Checked = false;
 
@@ -1196,7 +1268,22 @@ namespace Quick_Order
             ComboBox_NewPanel_POMCount.Text = CurrentPanelSettings.POMCount.ToString();
             ComboBox_NewPanel_LPICount.Text = CurrentPanelSettings.LPIModbusCount.ToString();
             ComboBox_NewPanel_FecbusCount.Text = CurrentPanelSettings.FecbusModuleCount.ToString();
-
+            if (CurrentPanelSettings.PrinterCount > 0)
+            {
+                CheckEdit_NewPanelPrinter.Checked = true;
+            }
+            else
+            {
+                CheckEdit_NewPanelPrinter.Checked = false;
+            }
+            if (CurrentPanelSettings.BlackBoxCount > 0)
+            {
+                CheckEdit_NewPanelBlackBox.Checked = true;
+            }
+            else
+            {
+                CheckEdit_NewPanelBlackBox.Checked = false;
+            }
             IsInLoading = false;
         }
 
@@ -1216,6 +1303,7 @@ namespace Quick_Order
             if (CurrentPanelSettings == null) return;
 
             CurrentPanelSettings.ACMCount = CommonUsages.GetIntegerFromString(ComboBox_NewPanel_ACMCount.Text);
+
             DBClass.GetInstance().RefreshPanelSettingRowByModelType(ModelTypeEnum.ACM, CurrentPanelSettings, CurrentPanelSettings.ACMCount);
             RefreshMainPage(AimPage.LeftPage);
 
@@ -1226,11 +1314,19 @@ namespace Quick_Order
         {
             if (CurrentPanelSettings == null) return;
 
+            if (CurrentPanelSettings.FecbusModuleCount + CurrentPanelSettings.LPIModbusCount + CurrentPanelSettings.NCMHighCount > 4 && ComboBox_NewPanel_POMCount.SelectedIndex == 3) //当多线控制卡满配时候，其他卡的数量只能是4个
+            {
+                CommonUsages.MyMsgBox("已没有空余位置放置板卡！。\n\r", CommonUsages.MsgBoxTypeEnum.Error);
+                //int OldValue = ComboBox_NewPanel_POMCount_OldIndex;
+                ComboBox_NewPanel_POMCount.SelectedIndex = ComboBox_NewPanel_POMCount_OldIndex;
+                return;
+            }
             CurrentPanelSettings.POMCount = CommonUsages.GetIntegerFromString(ComboBox_NewPanel_POMCount.Text);
             DBClass.GetInstance().RefreshPanelSettingRowByModelType(ModelTypeEnum.POM, CurrentPanelSettings, CurrentPanelSettings.POMCount);
             RefreshMainPage(AimPage.All);
 
             AddTitleFix(true);
+            ComboBox_NewPanel_POMCount_OldIndex = ComboBox_NewPanel_POMCount.SelectedIndex;
         }
 
         private void ComboBox_NewPanel_LPICount_SelectedIndexChanged(object sender, EventArgs e)
@@ -1238,7 +1334,7 @@ namespace Quick_Order
             if (CurrentPanelSettings == null) return;
 
             int curCount = CommonUsages.GetIntegerFromString(ComboBox_NewPanel_LPICount.Text);
-           
+
             CurrentPanelSettings.LPIModbusCount = curCount;
             DBClass.GetInstance().RefreshPanelSettingRowByModelType(ModelTypeEnum.LPI, CurrentPanelSettings, CurrentPanelSettings.LPIModbusCount);
             RefreshMainPage(AimPage.Inside);
@@ -1251,7 +1347,7 @@ namespace Quick_Order
             if (CurrentPanelSettings == null) return;
 
             int curCount = CommonUsages.GetIntegerFromString(ComboBox_NewPanel_FecbusCount.Text);
-            
+
             CurrentPanelSettings.FecbusModuleCount = CommonUsages.GetIntegerFromString(ComboBox_NewPanel_FecbusCount.Text);
             DBClass.GetInstance().RefreshPanelSettingRowByModelType(ModelTypeEnum.FECBUS, CurrentPanelSettings, CurrentPanelSettings.FecbusModuleCount);
             RefreshMainPage(AimPage.Inside);
@@ -1263,12 +1359,12 @@ namespace Quick_Order
         {
             if (CurrentPanelSettings == null) return;
 
-            int curCount = CommonUsages.GetIntegerFromString(ComboBox_NewPanel_NCMHighCount.Text);       
-            
+            int curCount = CommonUsages.GetIntegerFromString(ComboBox_NewPanel_NCMHighCount.Text);
+
             if (curCount == 0)
             {
                 CheckEdit_NewPanel_NCMHigh.Checked = false;
-            }  
+            }
 
             CurrentPanelSettings.NCMHighCount = curCount;
             DBClass.GetInstance().RefreshPanelSettingRowByModelType(ModelTypeEnum.NCM_High, CurrentPanelSettings, CurrentPanelSettings.NCMHighCount);
@@ -1293,7 +1389,7 @@ namespace Quick_Order
                 CommonUsages.MyMsgBox(ee.Message, CommonUsages.MsgBoxTypeEnum.Warning);
                 CurrentPanelSettings.NCMHighCount = formerValue;
                 e.Cancel = true;
-            }                 
+            }
         }
 
         private void ComboBox_NewPanel_LPICount_EditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e)
@@ -1312,7 +1408,7 @@ namespace Quick_Order
                 CommonUsages.MyMsgBox(ee.Message, CommonUsages.MsgBoxTypeEnum.Warning);
                 CurrentPanelSettings.LPIModbusCount = formerValue;
                 e.Cancel = true;
-            }          
+            }
         }
 
         private void ComboBox_NewPanel_FecbusCount_EditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e)
@@ -1420,7 +1516,7 @@ namespace Quick_Order
         {
             if (CurrentPanelSettings == null) return;
 
-            if (CheckEdit_NewPanel_NCMMedium.Checked==true)
+            if (CheckEdit_NewPanel_NCMMedium.Checked == true)
             {
                 CheckEdit_NewPanel_NCMLow.Checked = false;
 
@@ -1450,7 +1546,7 @@ namespace Quick_Order
 
                 CurrentPanelSettings.NCMLowCount = 1;
                 CurrentPanelSettings.NCMMediumCount = 0;
-            }       
+            }
             else
             {
                 CurrentPanelSettings.NCMLowCount = 0;
@@ -1491,7 +1587,14 @@ namespace Quick_Order
             if (CurrentPanelSettings == null) return;
 
             if (CheckEdit_NewPanelPrinter.Checked == true)
+            {
                 CurrentPanelSettings.PrinterCount = 1;
+            }
+            else
+            {
+                CurrentPanelSettings.PrinterCount = 0;
+            }
+
             DBClass.GetInstance().RefreshPanelSettingRowByModelType(ModelTypeEnum.Printer, CurrentPanelSettings, CurrentPanelSettings.PrinterCount);
             RefreshMainPage(AimPage.LeftPage);
 
@@ -1502,29 +1605,37 @@ namespace Quick_Order
         {
             if (CurrentPanelSettings == null) return;
             if (CheckEdit_NewPanelBlackBox.Checked == true)
+            {
                 CurrentPanelSettings.BlackBoxCount = 1;
+            }
+            else
+            {
+                CurrentPanelSettings.BlackBoxCount = 0;
+            }
+
             DBClass.GetInstance().RefreshPanelSettingRowByModelType(ModelTypeEnum.BlackBox, CurrentPanelSettings, CurrentPanelSettings.BlackBoxCount);
             RefreshMainPage(AimPage.MiddlePage);
+            //RefreshMainPage(AimPage.Inside);
 
             AddTitleFix(true);
         }
 
         private void CheckEdit_NewPanelPrinter_EditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e)
         {
-            if ((bool)e.NewValue == false)
-            {
-                CommonUsages.MyMsgBox("请添加至少一个打印机。", CommonUsages.MsgBoxTypeEnum.Warning);
-                e.Cancel = true;
-            }
+            //if ((bool)e.NewValue == false)
+            //{
+            //    CommonUsages.MyMsgBox("请添加至少一个打印机。", CommonUsages.MsgBoxTypeEnum.Warning);
+            //    e.Cancel = true;
+            //}
         }
 
         private void CheckEdit_NewPanelBlackBox_EditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e)
         {
-            if ((bool)e.NewValue == false)
-            {
-                CommonUsages.MyMsgBox("请添加至少一个黑盒子。", CommonUsages.MsgBoxTypeEnum.Warning);
-                e.Cancel = true;
-            }
+            //if ((bool)e.NewValue == false)
+            //{
+            //    CommonUsages.MyMsgBox("请添加至少一个黑盒子。", CommonUsages.MsgBoxTypeEnum.Warning);
+            //    e.Cancel = true;
+            //}
         }
 
         private void TextBox_NewPanel_ProjectName_EditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e)
@@ -1562,7 +1673,7 @@ namespace Quick_Order
             }
             if (e.Column.FieldName == "Button")
             {
-                Rectangle rect = new Rectangle(e.Bounds.Left + 5, e.Bounds.Top + 10, e.Bounds.Width - 10, e.Bounds.Height - 20);
+                Rectangle rect = new Rectangle(e.Bounds.Left + 2, e.Bounds.Top + 3, e.Bounds.Width - 5, e.Bounds.Height - 6);
                 if (e.RowHandle == GridView_MiddleFittingList.FocusedRowHandle)
                 {
                     e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(23, 146, 229)), rect);
@@ -1580,7 +1691,30 @@ namespace Quick_Order
             {
                 if (e.CellValue != DBNull.Value)
                 {
-                    e.Graphics.DrawImage((Image)e.CellValue, new Rectangle(e.Bounds.Left + 18, e.Bounds.Top + 10, e.Bounds.Width - 36, e.Bounds.Height - 20));
+                    int height = ((Image)e.CellValue).Height;
+                    int width = ((Image)e.CellValue).Width;
+                    if (height < e.Bounds.Height - 1 && width < e.Bounds.Width)
+                    {
+                        e.Graphics.DrawImage((Image)e.CellValue, new Rectangle(e.Bounds.Left + ((e.Bounds.Width - width) / 2), e.Bounds.Top + ((e.Bounds.Height - height) / 2), width, height));
+                    }
+                    else if (height > e.Bounds.Height - 1 && width < e.Bounds.Width)
+                    {
+                        e.Graphics.DrawImage((Image)e.CellValue, new Rectangle(e.Bounds.Left + ((e.Bounds.Width - ((39 * width) / height)) / 2), e.Bounds.Top + ((e.Bounds.Height - e.Bounds.Height) / 2), (39 * width) / height, e.Bounds.Height));
+                    }
+                    else if (height < e.Bounds.Height - 1 && width > e.Bounds.Width)
+                    {
+                        e.Graphics.DrawImage((Image)e.CellValue, new Rectangle(e.Bounds.Left + ((e.Bounds.Width - e.Bounds.Width) / 2), e.Bounds.Top + ((e.Bounds.Height - ((50 * height) / width + 4)) / 2), e.Bounds.Width, (50 * height) / width + 4));
+                    }
+                    else
+                    {
+                        e.Graphics.DrawImage((Image)e.CellValue, new Rectangle(e.Bounds.Left + 4, e.Bounds.Top + 4, e.Bounds.Width - 8, e.Bounds.Height - 8));
+                    }
+
+                    //  e.Graphics.DrawImage((Image)e.CellValue, new Rectangle(e.Bounds.Left +4, e.Bounds.Top +4, e.Bounds.Width - 8, e.Bounds.Height -8));
+
+
+                    //e.Graphics.DrawImage((Image)e.CellValue, new Rectangle(e.Bounds.Left + 18, e.Bounds.Top + 10, e.Bounds.Width - 36, e.Bounds.Height - 20));
+                    //e.Graphics.DrawImage((Image)e.CellValue, new Rectangle(e.Bounds.Left , e.Bounds.Top, e.Bounds.Width , e.Bounds.Height));
                 }
                 e.Handled = true;
             }
@@ -1588,7 +1722,8 @@ namespace Quick_Order
             if (e.Column.FieldName == "UnitPrice")
             {
                 e.Graphics.DrawLine(new Pen(Color.FromArgb(240, 240, 240), 1), new Point(e.Bounds.Left + 2, e.Bounds.Top + 8), new Point(e.Bounds.Left + 2, e.Bounds.Bottom - 8));
-                e.Graphics.DrawLine(new Pen(Color.FromArgb(240, 240, 240), 1), new Point(e.Bounds.Right - 2, e.Bounds.Top + 8), new Point(e.Bounds.Right + 2, e.Bounds.Bottom - 8));
+                //e.Graphics.DrawLine(new Pen(Color.FromArgb(240, 240, 240), 1), new Point(e.Bounds.Right - 2, e.Bounds.Top + 8), new Point(e.Bounds.Right + 2, e.Bounds.Bottom - 8));
+                e.Graphics.DrawLine(new Pen(Color.FromArgb(240, 240, 240), 1), new Point(e.Bounds.Right - 2, e.Bounds.Top + 8), new Point(e.Bounds.Right - 2, e.Bounds.Bottom - 8));
             }
         }
 
@@ -1608,8 +1743,9 @@ namespace Quick_Order
                 string model = GridView_MiddleFittingList.GetFocusedRowCellValue("Model").ToString();
                 DBClass.GetInstance().RefreshAFittingSetitingRow(model, count);
                 AddTitleFix(true);
-            }            
-        }     
+                GridView_MiddleFittingList.SetFocusedRowCellValue("Count", "1");
+            }
+        }
         #endregion
 
         #region "右面页面"
@@ -1655,7 +1791,39 @@ namespace Quick_Order
             {
                 if (e.CellValue != DBNull.Value)
                 {
-                    e.Graphics.DrawImage((Image)e.CellValue, new Rectangle(e.Bounds.Left + 8, e.Bounds.Top + 8, e.Bounds.Width - 16, e.Bounds.Height - 16));
+                    string PictureName = this.GridView_PanelSettingList.GetRowCellValue(e.RowHandle, "Model").ToString();
+                    if (PictureSize.ContainsKey(PictureName))
+                    {
+                        Size picSize = PictureSize.Where(S => S.Key == PictureName).Select(S => S.Value).First();
+                        e.Graphics.DrawImage((Image)e.CellValue, new Rectangle(e.Bounds.Left + ((e.Bounds.Width - picSize.Width) / 2), e.Bounds.Top + ((e.Bounds.Height - picSize.Height) / 2), picSize.Width, picSize.Height));
+                        //e.Graphics.DrawImage((Image)e.CellValue, new Rectangle(new Point((e.Bounds.Width - picSize.Width) / 2, (e.Bounds.Height - picSize.Height) / 2) , picSize));
+                        //e.Graphics.DrawImage((Image)e.CellValue, new Point());
+                    }
+                    else
+                    {
+                        int height = ((Image)e.CellValue).Height;
+                        int width = ((Image)e.CellValue).Width;
+                        if (height < e.Bounds.Height && width < e.Bounds.Width)
+                        {
+                            e.Graphics.DrawImage((Image)e.CellValue, new Rectangle(e.Bounds.Left + ((e.Bounds.Width - width) / 2), e.Bounds.Top + ((e.Bounds.Height - height) / 2), width, height));
+                        }
+                        else if (height > e.Bounds.Height && width < e.Bounds.Width)
+                        {
+                            e.Graphics.DrawImage((Image)e.CellValue, new Rectangle(e.Bounds.Left + ((e.Bounds.Width - ((39 * width) / height)) / 2), e.Bounds.Top + ((e.Bounds.Height - e.Bounds.Height) / 2), (39 * width) / height, e.Bounds.Height));
+                        }
+                        else if (height < e.Bounds.Height && width > e.Bounds.Width)
+                        {
+                            e.Graphics.DrawImage((Image)e.CellValue, new Rectangle(e.Bounds.Left + ((e.Bounds.Width - e.Bounds.Width) / 2), e.Bounds.Top + ((e.Bounds.Height - ((50 * height) / width + 4)) / 2), e.Bounds.Width, (50 * height) / width + 4));
+                        }
+                        else
+                        {
+                            e.Graphics.DrawImage((Image)e.CellValue, new Rectangle(e.Bounds.Left + 4, e.Bounds.Top + 4, e.Bounds.Width - 8, e.Bounds.Height - 8));
+                        }
+
+                        //  e.Graphics.DrawImage((Image)e.CellValue, new Rectangle(e.Bounds.Left +4, e.Bounds.Top +4, e.Bounds.Width - 8, e.Bounds.Height -8));
+
+                    }
+
                 }
                 e.Handled = true;
             }
@@ -1683,10 +1851,41 @@ namespace Quick_Order
             {
                 if (e.CellValue != DBNull.Value)
                 {
-                    e.Graphics.DrawImage((Image)e.CellValue, new Rectangle(e.Bounds.Left + 8, e.Bounds.Top + 8, e.Bounds.Width - 16, e.Bounds.Height - 16));
+                    int height = ((Image)e.CellValue).Height;
+                    int width = ((Image)e.CellValue).Width;
+                    if (height < e.Bounds.Height && width < e.Bounds.Width)
+                    {
+                        e.Graphics.DrawImage((Image)e.CellValue, new Rectangle(e.Bounds.Left + ((e.Bounds.Width - width) / 2), e.Bounds.Top + ((e.Bounds.Height - height) / 2), width, height));
+                    }
+                    else if (height > e.Bounds.Height && width < e.Bounds.Width)
+                    {
+                        e.Graphics.DrawImage((Image)e.CellValue, new Rectangle(e.Bounds.Left + ((e.Bounds.Width - ((39 * width) / height)) / 2), e.Bounds.Top + ((e.Bounds.Height - e.Bounds.Height) / 2), (39 * width) / height, e.Bounds.Height));
+                    }
+                    else if (height < e.Bounds.Height && width > e.Bounds.Width)
+                    {
+                        e.Graphics.DrawImage((Image)e.CellValue, new Rectangle(e.Bounds.Left + ((e.Bounds.Width - e.Bounds.Width) / 2), e.Bounds.Top + ((e.Bounds.Height - ((50 * height) / width + 4)) / 2), e.Bounds.Width, (50 * height) / width + 4));
+                    }
+                    else
+                    {
+                        e.Graphics.DrawImage((Image)e.CellValue, new Rectangle(e.Bounds.Left + 4, e.Bounds.Top + 4, e.Bounds.Width - 8, e.Bounds.Height - 8));
+                    }
+
+
+                    //e.Graphics.DrawImage((Image)e.CellValue, new Rectangle(e.Bounds.Left + 18, e.Bounds.Top + 10, e.Bounds.Width - 36, e.Bounds.Height - 20));
+                    //e.Graphics.DrawImage((Image)e.CellValue, new Rectangle(e.Bounds.Left + 4, e.Bounds.Top + 4, e.Bounds.Width -8 , e.Bounds.Height -8));
+
+                    //e.Graphics.DrawImage((Image)e.CellValue, new Rectangle(e.Bounds.Left , e.Bounds.Top , e.Bounds.Width , e.Bounds.Height ));
                 }
-                e.Handled = true;
+
             }
+            if (e.Column.FieldName == "delete")
+            {
+                int height = Properties.Resources.删除.Height;
+                int width = Properties.Resources.删除.Width;
+                //e.Graphics.DrawImage(Properties.Resources.删除, new Rectangle(e.Bounds.Left + 4, e.Bounds.Top + 4, e.Bounds.Width - 8, e.Bounds.Height - 8));
+                e.Graphics.DrawImage(Properties.Resources.删除, new Rectangle(e.Bounds.Left + ((e.Bounds.Width - width) / 2), e.Bounds.Top + ((e.Bounds.Height - height) / 2), width, height));
+            }
+            e.Handled = true;
         }
 
         private void GridView_FittingSettingsList_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
@@ -1702,7 +1901,7 @@ namespace Quick_Order
                     e.Cache.FillRectangle(new SolidBrush(Color.White), e.Bounds);
                 }
                 e.Cache.DrawString(string.Format(" {0}", e.RowHandle + 1), new Font("Microsoft YaHei UI", 14, GraphicsUnit.Pixel), new SolidBrush(Color.FromArgb(48, 48, 48)), e.Bounds, CustomStringFormatNear);
-                               
+
                 e.Handled = true;
             }
         }
@@ -1721,10 +1920,10 @@ namespace Quick_Order
                 Panel_FitingsSettingFocusRowPage.Visible = false;
                 return;
             }
-            Label_FittingSettingCount.Text = cout.ToString();
-            int y = GridControl_FittingSettingsList.Location.Y + e.FocusedRowHandle * 39;
-            Panel_FitingsSettingFocusRowPage.Location = new Point(255, y);
-            Panel_FitingsSettingFocusRowPage.Visible = true;
+            //Label_FittingSettingCount.Text = cout.ToString();
+            //int y = GridControl_FittingSettingsList.Location.Y + e.FocusedRowHandle * 39;
+            //Panel_FitingsSettingFocusRowPage.Location = new Point(255, y);
+            ////Panel_FitingsSettingFocusRowPage.Visible = true;
         }
 
         private void PictureBox_Button_DeleteFittingSetting_Click(object sender, EventArgs e)
@@ -1750,7 +1949,7 @@ namespace Quick_Order
         private void Label_Button_MinusFittingSetting_Click(object sender, EventArgs e)
         {
             int curCount = Convert.ToInt32(Label_FittingSettingCount.Text);
-            if (curCount>0) curCount--;
+            if (curCount > 0) curCount--;
             Label_FittingSettingCount.Text = curCount.ToString();
 
             string model = GridView_FittingSettingsList.GetFocusedRowCellValue("Model").ToString();
@@ -1767,6 +1966,10 @@ namespace Quick_Order
             Form_Report form_report = new Form_Report();
             form_report.GeneratePanelImages = new Form_Report.GeneratePanelImagesDelegate(GeneratePanelImages);
             form_report.ShowDialog();
+            if (form_report.IsSave)
+            {
+                SaveProject();
+            }
         }
 
         private bool GeneratePanelImages()
@@ -1810,7 +2013,7 @@ namespace Quick_Order
             //}
 
             return result;
-        }        
+        }
 
         #endregion
 
@@ -1848,8 +2051,8 @@ namespace Quick_Order
         {
             //CommonUsages.GrayMainFormWhenPopup(this, () =>
             //{
-                AboutBox1 aboutForm = new AboutBox1();
-                aboutForm.ShowDialog();
+            AboutBox1 aboutForm = new AboutBox1();
+            aboutForm.ShowDialog();
             //});
         }
 
@@ -1867,7 +2070,7 @@ namespace Quick_Order
                 ShowProjectMenu(false);
             }
 
-            if (e.Control && e.KeyCode== Keys.S)
+            if (e.Control && e.KeyCode == Keys.S)
             {
                 PictureBox_SaveProject_Click(PictureBox_SaveProject, e);
             }
@@ -1893,11 +2096,15 @@ namespace Quick_Order
             if (IsInLoading == true)
                 return;
 
-            if (toAdd==true)
+            if (toAdd == true)
             {
                 if (Label_Title.Text.EndsWith("*") == false)
                 {
                     Label_Title.Text = Label_Title.Text + "*";
+                }
+                if (PictureBox_SaveProject.Image != Properties.Resources.组663)
+                {
+                    PictureBox_SaveProject.Image = Properties.Resources.组663;
                 }
             }
             else
@@ -1906,12 +2113,395 @@ namespace Quick_Order
                 {
                     Label_Title.Text = Label_Title.Text.TrimEnd('*');
                 }
+                PictureBox_SaveProject.Image = Properties.Resources.icon_保存1;
+                //if (PictureBox_SaveProject.Image == Properties.Resources.组663)
+                //{
+                //    PictureBox_SaveProject.Image = Properties.Resources.icon_保存1;
+                //}
             }
         }
 
         private void pictureBox_Help_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("控制器配置单中单品的数量，为去掉“控制器套件”中默认配置后的数量。如套件中自带一个回路卡，当选配3块回路卡时,列表中回路卡的数量显示为2。");
-        }                    
+            MessageBox.Show("控制器配置单中单品的数量为去掉“控制器套件”中默认配置后的数量，如套件中自带一个回路卡，当选配3块回路卡时,列表中回路卡的数量显示为2。");
+        }
+
+        private void contextMenuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            //根据ContextMenuStrip Item 的name来判断
+            //编辑控制器
+            if ((e.ClickedItem).Name == "MenuItemEdit")
+            {
+                if (GridView_PanelList.SelectedRowsCount == 1)
+                {
+                    Int64 id = Convert.ToInt64(GridView_PanelList.GetFocusedRowCellValue("ID"));
+
+                    XtraTabControl_LeftPage.SelectedTabPage = XtraTabPage_LeftPage_SpecPanel;
+                    PictureBox_ConetextMenu.Image = Properties.Resources.Icon_Back;
+                    PictureBox_ConetextMenu.Tag = "Back";
+
+                    CurrentPanelSettings = DBClass.GetInstance().ReadPanelSettingsFromTable(id);
+
+                    RefreshLeftSpecPanel();
+                    RefreshMainPage(AimPage.All);
+                    GridView_PanelSettingList.ActiveFilterString = string.Format("[ItemID] = '{0}'", id);
+                }
+            }
+            //新建控制器
+            else if ((e.ClickedItem).Name == "MenuItemNew")
+            {
+                Form_NewPanelType form_new = new Quick_Order.Form_NewPanelType();
+                if (form_new.ShowDialog() != DialogResult.OK)
+                {
+                    return;
+                }
+
+                XtraTabControl_LeftPage.SelectedTabPage = XtraTabPage_LeftPage_SpecPanel;
+                PictureBox_ConetextMenu.Image = Properties.Resources.Icon_Back;
+                PictureBox_ConetextMenu.Tag = "Back";
+                CheckEdit_NewPanelPrinter.Checked = false;
+                CheckEdit_NewPanelBlackBox.Checked = false;
+
+                Int64 id = DBClass.GetInstance().GetCurrentMaxProjectID();
+                if (Form_NewPanelType.SelectedProjectType == BasicPanelSettings.PANELTYPE_N6000P)
+                {
+                    CurrentPanelSettings = new Quick_Order.N6000PPanelSettings(id, Form_NewPanelType.SelectedProjectLabel);
+                }
+                if (Form_NewPanelType.SelectedProjectType == BasicPanelSettings.PANELTYPE_N6000PBIGUA)
+                {
+                    CurrentPanelSettings = new Quick_Order.N6000PBiGuaSettings(id, Form_NewPanelType.SelectedProjectLabel);
+                }
+
+                DBClass.GetInstance().AddANewPanel(CurrentPanelSettings);
+                GridView_PanelList.FocusedRowHandle = GridView_PanelList.RowCount - 1;
+                AddTitleFix(true);
+            }
+            //复制
+            else if ((e.ClickedItem).Name == "MenuItemCopySingle")
+            {
+                //Clipboard.SetData("Controler", "1");
+                Int64 id = Convert.ToInt64(GridView_PanelList.GetFocusedRowCellValue("ID"));
+                CopyControler(id, "1");
+            }
+            //复制多个控制器
+            else if ((e.ClickedItem).Name == "MenuItemCopyMore")
+            {
+                //Clipboard.SetData("Controler", this.GridView_PanelList.GetFocusedRowCellValue("Other").ToString());
+                Int64 id = Convert.ToInt64(GridView_PanelList.GetFocusedRowCellValue("ID"));
+                CopyControler(id, this.GridView_PanelList.GetFocusedRowCellValue("Other").ToString());
+            }
+            //修改控制器数量
+            else if ((e.ClickedItem).Name == "MenuItemEditAmount")
+            {
+                Form_EditControlCount form_EditControlCount = new Form_EditControlCount(this.GridView_PanelList.GetFocusedRowCellValue("Other").ToString());
+                if (form_EditControlCount.ShowDialog() != DialogResult.OK)
+                {
+                    return;
+                }
+                this.GridView_PanelList.SetFocusedRowCellValue("Other", form_EditControlCount.ControlCount);
+                this.GridView_PanelList.RefreshData();
+                AddTitleFix(true);
+            }
+            //重命名
+            else if ((e.ClickedItem).Name == "MenuItemRename")
+            {
+                Form_NewName form_NewName = new Form_NewName(this.GridView_PanelList.GetFocusedRowCellValue("Name").ToString());
+                if (form_NewName.ShowDialog() != DialogResult.OK)
+                {
+                    return;
+                }
+                this.GridView_PanelList.SetFocusedRowCellValue("Name", form_NewName.ControlName);
+                this.GridView_PanelList.RefreshData();
+                AddTitleFix(true);
+            }
+            //删除
+            else if ((e.ClickedItem).Name == "MenuItemDelete")
+            {
+                if (GridView_PanelList.SelectedRowsCount == 1)
+                {
+                    Int64 id = Convert.ToInt64(GridView_PanelList.GetFocusedRowCellValue("ID"));
+                    string warnString = string.Format("确认要删除当前控制器吗？");
+                    if (MessageBox.Show(warnString, "警告", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                    {
+                        DBClass.GetInstance().DeleteAPanel(id);
+
+                        AddTitleFix(true);
+                    }
+                }
+            }
+
+
+        }
+
+        private void GridView_PanelList_CustomDrawCell(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
+        {
+            if (e.Column.FieldName == "Other" && (e.CellValue != null))
+            {
+                Rectangle rect = new Rectangle(e.Bounds.Left + 2, e.Bounds.Top + 2, e.Bounds.Width - 4, e.Bounds.Height - 4);
+                e.Graphics.DrawRectangle(new Pen(Color.FromArgb(223, 223, 223), 1), rect);
+                e.Graphics.DrawString(e.CellValue.ToString(), new Font("Microsoft YaHei UI", 14, GraphicsUnit.Pixel), new SolidBrush(Color.FromArgb(128, 128, 128)), rect, CustomStringFormatMiddle);
+                e.Handled = true;
+            }
+        }
+
+        private void GridView_PanelList_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ((e.KeyCode == Keys.LControlKey || e.KeyCode == Keys.RControlKey) && e.KeyCode == Keys.V)
+            {
+                string others = Clipboard.GetData("Controler").ToString();
+                if (others.Equals("0"))
+                {
+                    return;
+
+                }
+                //Form_NewPanelType form_new = new Quick_Order.Form_NewPanelType();
+                //if (form_new.ShowDialog() != DialogResult.OK)
+                //{
+                //    return;
+                //}
+
+                XtraTabControl_LeftPage.SelectedTabPage = XtraTabPage_LeftPage_SpecPanel;
+                PictureBox_ConetextMenu.Image = Properties.Resources.Icon_Back;
+                PictureBox_ConetextMenu.Tag = "Back";
+
+                Int64 id = DBClass.GetInstance().GetCurrentMaxProjectID();
+                if (Form_NewPanelType.SelectedProjectType == BasicPanelSettings.PANELTYPE_N6000P)
+                {
+                    CurrentPanelSettings = new Quick_Order.N6000PPanelSettings(id, Form_NewPanelType.SelectedProjectLabel);
+                }
+                if (Form_NewPanelType.SelectedProjectType == BasicPanelSettings.PANELTYPE_N6000PBIGUA)
+                {
+                    CurrentPanelSettings = new Quick_Order.N6000PBiGuaSettings(id, Form_NewPanelType.SelectedProjectLabel);
+                }
+
+                DBClass.GetInstance().AddANewPanel(CurrentPanelSettings, others);
+                GridView_PanelList.FocusedRowHandle = GridView_PanelList.RowCount - 1;
+                AddTitleFix(true);
+
+
+                //复制完之后将剪切板归0
+                Clipboard.SetData("Controler", "0");
+            }
+        }
+
+        private void OnKeyDown(object sender, KeyEventArgs e)
+        {
+            if ((e.KeyCode == Keys.LControlKey || e.KeyCode == Keys.RControlKey) && e.KeyCode == Keys.V)
+            {
+                string others = Clipboard.GetData("Controler").ToString();
+                if (others.Equals("0"))
+                {
+                    return;
+
+                }
+                //Form_NewPanelType form_new = new Quick_Order.Form_NewPanelType();
+                //if (form_new.ShowDialog() != DialogResult.OK)
+                //{
+                //    return;
+                //}
+
+                XtraTabControl_LeftPage.SelectedTabPage = XtraTabPage_LeftPage_SpecPanel;
+                PictureBox_ConetextMenu.Image = Properties.Resources.Icon_Back;
+                PictureBox_ConetextMenu.Tag = "Back";
+
+                Int64 id = DBClass.GetInstance().GetCurrentMaxProjectID();
+                if (Form_NewPanelType.SelectedProjectType == BasicPanelSettings.PANELTYPE_N6000P)
+                {
+                    CurrentPanelSettings = new Quick_Order.N6000PPanelSettings(id, Form_NewPanelType.SelectedProjectLabel);
+                }
+                if (Form_NewPanelType.SelectedProjectType == BasicPanelSettings.PANELTYPE_N6000PBIGUA)
+                {
+                    CurrentPanelSettings = new Quick_Order.N6000PBiGuaSettings(id, Form_NewPanelType.SelectedProjectLabel);
+                }
+
+                DBClass.GetInstance().AddANewPanel(CurrentPanelSettings, others);
+                GridView_PanelList.FocusedRowHandle = GridView_PanelList.RowCount - 1;
+                AddTitleFix(true);
+
+
+                //复制完之后将剪切板归0
+                Clipboard.SetData("Controler", "0");
+            }
+        }
+
+        private void CopyControler(Int64 Itemid, string others)
+        {
+            //string others = Clipboard.GetData("Controler").ToString();
+            //if (others.Equals("0"))
+            //{
+            //    return;
+
+            //}
+            //Form_NewPanelType form_new = new Quick_Order.Form_NewPanelType();
+            //if (form_new.ShowDialog() != DialogResult.OK)
+            //{
+            //    return;
+            //}
+
+            DBClass.GetInstance().AddADatatableRow(Itemid, others);
+
+
+            //XtraTabControl_LeftPage.SelectedTabPage = XtraTabPage_LeftPage_SpecPanel;
+            //PictureBox_ConetextMenu.Image = Properties.Resources.Icon_Back;
+            //PictureBox_ConetextMenu.Tag = "Back";
+
+            //Int64 id = DBClass.GetInstance().GetCurrentMaxProjectID();
+            //if (Form_NewPanelType.SelectedProjectType == BasicPanelSettings.PANELTYPE_N6000P)
+            //{
+            //    CurrentPanelSettings = new Quick_Order.N6000PPanelSettings(id, Form_NewPanelType.SelectedProjectLabel);
+            //}
+            //if (Form_NewPanelType.SelectedProjectType == BasicPanelSettings.PANELTYPE_N6000PBIGUA)
+            //{
+            //    CurrentPanelSettings = new Quick_Order.N6000PBiGuaSettings(id, Form_NewPanelType.SelectedProjectLabel);
+            //}
+
+            //DBClass.GetInstance().AddANewPanel(CurrentPanelSettings, others);
+            GridView_PanelList.FocusedRowHandle = GridView_PanelList.RowCount - 1;
+            AddTitleFix(true);
+
+
+            //复制完之后将剪切板归0
+            //Clipboard.SetData("Controler", "0");
+        }
+
+        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        {
+            if (this.GridView_PanelList.GetFocusedRowCellValue("Other").ToString().Trim().Equals("1"))
+            {
+                contextMenuStrip1.Items[3].Enabled = false;
+            }
+            else
+            {
+                contextMenuStrip1.Items[3].Enabled = true;
+            }
+        }
+
+        private void GridView_PanelList_DoubleClick(object sender, EventArgs e)
+        {
+            Int64 id = Convert.ToInt64(GridView_PanelList.GetFocusedRowCellValue("ID"));
+
+            XtraTabControl_LeftPage.SelectedTabPage = XtraTabPage_LeftPage_SpecPanel;
+            PictureBox_ConetextMenu.Image = Properties.Resources.Icon_Back;
+            PictureBox_ConetextMenu.Tag = "Back";
+
+            CurrentPanelSettings = DBClass.GetInstance().ReadPanelSettingsFromTable(id);
+
+            RefreshLeftSpecPanel();
+            RefreshMainPage(AimPage.All);
+            GridView_PanelSettingList.ActiveFilterString = string.Format("[ItemID] = '{0}'", id);
+        }
+
+        private void GridView_LeftPage_FittingBrandDetail_CustomDrawCell(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
+        {
+            DevExpress.XtraGrid.Views.Grid.GridView dView = sender as DevExpress.XtraGrid.Views.Grid.GridView;
+            if (dView.GetRow(e.RowHandle) == null)
+            {
+                return;
+            }
+            else
+            {
+                if (e.RowHandle == dView.FocusedRowHandle)
+                {
+                    e.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(146)))), ((int)(((byte)(229)))));//设置此行的背景颜色
+                }
+            }
+        }
+
+        private void GridView_FittingSettingsList_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+            string model = GridView_FittingSettingsList.GetFocusedRowCellValue("Model").ToString();
+            int curCount = int.Parse(GridView_FittingSettingsList.GetFocusedRowCellValue("Count").ToString());
+            DBClass.GetInstance().RefreshAFittingSetitingRow(model, curCount);
+
+            AddTitleFix(true);
+        }
+
+        private void GridView_FittingSettingsList_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
+        {
+            if (e.Column.FieldName == "delete")
+            {
+                string model = GridView_FittingSettingsList.GetFocusedRowCellValue("Model").ToString();
+                //int curCount = int.Parse(GridView_FittingSettingsList.GetFocusedRowCellValue("Count").ToString());
+                DBClass.GetInstance().RefreshAFittingSetitingRow(model, 0);
+
+                AddTitleFix(true);
+            }
+        }
+
+        private void rItemPictureEdit_RightPanelCount_Enter(object sender, EventArgs e)
+        {
+            TextBoxMaskBox innerEditor = GetInnerEdit(sender as TextEdit);
+            if (innerEditor != null)
+                innerEditor.ImeMode = ImeMode.Disable;
+        }
+        TextBoxMaskBox GetInnerEdit(BaseEdit editor)
+        {
+            foreach (Control innerEditor in editor.Controls)
+                if (innerEditor is TextBoxMaskBox)
+                    return innerEditor as TextBoxMaskBox;
+            return null;
+        }
+
+        private void userControl_MenuItem_SaveAs_Click(object sender, EventArgs e)
+        {
+            //if (!System.IO.File.Exists(Form_NewProject.SelectedProjectPath))
+            //{
+            //File.Delete();
+            Form_NewProject newForm = new Form_NewProject();
+            newForm.Button_Save.Text = "另存";
+            newForm.TextBox_ProjectName.Text = Path.GetFileNameWithoutExtension(CommonUsages.CurrentProjectPath);
+            newForm.TextBox_ProjectFolder.Text = Path.GetDirectoryName(CommonUsages.CurrentProjectPath);
+            if (newForm.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+
+            if (!System.IO.File.Exists(Form_NewProject.SelectedProjectPath))
+            {
+                //删掉已经更新的文件
+                File.Delete(CommonUsages.CurrentProjectPath);
+                CommonUsages.RecentProjectClassInst.DeleteProjectrow(CommonUsages.CurrentProjectPath);
+
+                string errMsg = "";
+                if (NewAProject(Form_NewProject.SelectedProjectPath, ref errMsg) == false)
+                {
+                    CommonUsages.MyMsgBox(string.Format("新建项目出错。 {0}", errMsg), CommonUsages.MsgBoxTypeEnum.Error);
+                    return;
+                }
+            }
+
+            //}
+            SaveProject();
+        }
+
+        private void pictureBox_MinForm_MouseEnter(object sender, EventArgs e)
+        {
+            this.pictureBox_MinForm.BackColor = System.Drawing.Color.Silver;
+        }
+
+        private void pictureBox_MinForm_MouseLeave(object sender, EventArgs e)
+        {
+            this.pictureBox_MinForm.BackColor = System.Drawing.Color.White;
+        }
+
+        private void pictureBoxMaxForm_MouseEnter(object sender, EventArgs e)
+        {
+            this.pictureBoxMaxForm.BackColor = System.Drawing.Color.Silver;
+        }
+
+        private void pictureBoxMaxForm_MouseLeave(object sender, EventArgs e)
+        {
+            this.pictureBoxMaxForm.BackColor = System.Drawing.Color.White;
+        }
+
+        private void pictureBox_CloseForm_MouseEnter(object sender, EventArgs e)
+        {
+            this.pictureBox_CloseForm.BackColor = System.Drawing.Color.Silver;
+        }
+
+        private void pictureBox_CloseForm_MouseLeave(object sender, EventArgs e)
+        {
+            this.pictureBox_CloseForm.BackColor = System.Drawing.Color.White;
+        }
     }
 }

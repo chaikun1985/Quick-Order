@@ -78,5 +78,35 @@ namespace Quick_Order
         {
             this.OnClick(e);
         }
+
+        private void UserControl_MenuItem_MouseEnter(object sender, EventArgs e)
+        {
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(146)))), ((int)(((byte)(229)))));
+        }
+
+        private void UserControl_MenuItem_MouseLeave(object sender, EventArgs e)
+        {
+            this.BackColor = Color.White;
+        }
+
+        private void Label_Title_MouseEnter(object sender, EventArgs e)
+        {
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(146)))), ((int)(((byte)(229)))));
+        }
+
+        private void Label_Title_MouseLeave(object sender, EventArgs e)
+        {
+            this.BackColor = Color.White;
+        }
+
+        private void Label_ShortKey_MouseEnter(object sender, EventArgs e)
+        {
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(146)))), ((int)(((byte)(229)))));
+        }
+
+        private void Label_ShortKey_MouseLeave(object sender, EventArgs e)
+        {
+            this.BackColor = Color.White;
+        }
     }
 }

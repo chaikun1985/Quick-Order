@@ -102,9 +102,16 @@ namespace Quick_Order
                 modelProp.unitPrice = GetCellDouble(row.GetCell(8));
                 modelProp.picture = GetImageByModelTypeEnum(modelType);
 
-                AddAModelProprty(modelProp, ref DeviceTypeList);
+                AddAModelProprty (modelProp, ref DeviceTypeList);               
             }
-
+            //ModelTypeEnum modelType1 = GetModelType("SCAB-6P-4U");
+            //ModelProperty modelProp1 = new Quick_Order.ModelProperty("SCAB-6P-4U", modelType1);
+            //modelProp1.brand = "备品备件专用";
+            //modelProp1.comment ="";
+            //modelProp1.label = "4U盲板";
+            //modelProp1.unitPrice = 0;
+            //modelProp1.picture = GetImageByModelTypeEnum(modelType1);
+            //AddAModelProprty(modelProp1, ref DeviceTypeList);
             return true;
         }
 
@@ -121,7 +128,7 @@ namespace Quick_Order
             if (cellString == "") return 0;
             try
             {
-                return Convert.ToDouble(icell.ToString());
+                return Math.Round(Convert.ToDouble(icell.ToString()),2)  ;
             }
             catch (Exception)
             {
@@ -152,15 +159,15 @@ namespace Quick_Order
                 case ModelTypeEnum.NCM_Medium:
                     return Properties.Resources.主机开机正面_中速网卡;
                 case ModelTypeEnum.POM:
-                    return Properties.Resources.主机背面__POM;
+                    return Properties.Resources.DXKZ_16;
                 case ModelTypeEnum.Printer:
                     return Properties.Resources.主机正面_打印机;
                 case ModelTypeEnum.XianChao:
                     return Properties.Resources.主机开机正面__线槽_有设备;
                 case ModelTypeEnum.LCM_Holder:
-                    return Properties.Resources.主机开机正面_MB;
+                    return Properties.Resources.LCM_2PG_ZJ; 
                 case ModelTypeEnum.LCM_Board:
-                    return Properties.Resources.主机开机正面_LCM;
+                    return Properties.Resources.主机开机正面_MB; 
                 case ModelTypeEnum.BlackBox:
                     return Properties.Resources.主机开机正面_黑盒子;
                 case ModelTypeEnum.NCA:
@@ -188,7 +195,38 @@ namespace Quick_Order
                 case ModelTypeEnum.CommonBase:
                     return Properties.Resources.普通底座;
                 case ModelTypeEnum.NetworkMonitor:
-                    return Properties.Resources.网络显示器;
+                    return Properties.Resources.网络显示器; 
+                case ModelTypeEnum.KITV3:
+                    return Properties.Resources.N_6000P_KIT_V3;
+                case ModelTypeEnum.U2Board:
+                    return Properties.Resources.SCAB6P2U;
+                case ModelTypeEnum.FuShanye:
+                    return Properties.Resources.SCAB_6P_DR;
+                case ModelTypeEnum.U3Board:
+                    return Properties.Resources.SCAB_6P_3U;
+                case ModelTypeEnum.U4Board:
+                    return Properties.Resources.SCAB_6P_4U;
+                case ModelTypeEnum.POM_Holder:
+                    return Properties.Resources.DXKZ_ZJ_6P;
+                case ModelTypeEnum.POM_Board:
+                    return Properties.Resources.DXKZ_JXB_6P;
+                case ModelTypeEnum.POM_OperateBoard:
+                    return Properties.Resources.DXKZ_MB_6P;
+                case ModelTypeEnum.LRS_WM_350_24:
+                    return Properties.Resources.LRS_WM_350_25;
+                case ModelTypeEnum.BT12M28AC:
+                    return Properties.Resources.BT_12M28AC;
+                case ModelTypeEnum.BT12M20AC:
+                    return Properties.Resources.BT_12M20AC;
+                case ModelTypeEnum.CPU:
+                    return Properties.Resources.N6000P_DSP;
+                case ModelTypeEnum.LiGui:
+                    return Properties.Resources.SCAB_6000P_V3;
+                case ModelTypeEnum.WuKaiKongBan:
+                    return Properties.Resources.BMP_6P;
+                case ModelTypeEnum.LRS_350_24:
+                    return Properties.Resources.LRS_350_24;
+
             }
 
             return picture;
@@ -200,8 +238,10 @@ namespace Quick_Order
             switch (model)
             {
                 case "N-6000P-KIT-V3":
+                    type = ModelTypeEnum.KITV3;
+                    break;
                 case "N-6000P-WM-KIT-V3":
-                    type = ModelTypeEnum.Panel;
+                    type = ModelTypeEnum.KITV3;
                     break;
                 case "LCM-2PG":
                     type = ModelTypeEnum.LCM;
@@ -212,7 +252,7 @@ namespace Quick_Order
                 case "ZXMB-24":
                     type = ModelTypeEnum.ACM;
                     break;
-                case "NCM-F-6P":
+                case "NCM-F-6P-V3":
                     type = ModelTypeEnum.NCM_High;
                     break;
                 case "NCM-WF-6P":
@@ -221,7 +261,7 @@ namespace Quick_Order
                 case "NCM-W-6P":
                     type = ModelTypeEnum.NCM_Low;
                     break;
-                case "uPRT-6P-V3-KIT":
+                case "uPRT-6P-KIT":
                 case "uPRT-6P-V3":
                     type = ModelTypeEnum.Printer;
                     break;
@@ -251,13 +291,19 @@ namespace Quick_Order
                     type = ModelTypeEnum.POM_OperateBoard;
                     break;
                 case "LRS-350-24":
+                    type = ModelTypeEnum.LRS_350_24;
+                    break;
                 case "LRS-WM-350-24":
+                    type = ModelTypeEnum.LRS_WM_350_24;
+                    break;
                 case "LRS-WM-350-25":
                     type = ModelTypeEnum.Power;
                     break;
                 case "BT-12M28AC":
+                    type = ModelTypeEnum.BT12M28AC;
+                    break;
                 case "BT-12M20AC":
-                    type = ModelTypeEnum.Dianci;
+                    type = ModelTypeEnum.BT12M20AC;
                     break;
                 case "CPU-6000P-V3":
                     type = ModelTypeEnum.CPU;
@@ -279,6 +325,9 @@ namespace Quick_Order
                     break;
                 case "SCAB-6P-3U":
                     type = ModelTypeEnum.U3Board;
+                    break;
+                case "SCAB-6P-4U":
+                    type = ModelTypeEnum.U4Board;
                     break;
                 case "NotList":
                     type = ModelTypeEnum.NCA;
@@ -455,7 +504,13 @@ namespace Quick_Order
         Detector,
         CommonBase,
         NetworkMonitor,
-        Other
+        Other,
+        KITV3,
+        LRS_350_24,
+        LRS_WM_350_24,
+        BT12M28AC,
+        BT12M20AC,
+        U4Board
     }
 
     public class ModelProperty

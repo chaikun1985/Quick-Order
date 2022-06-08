@@ -43,10 +43,12 @@
             this.Label_Title.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.Label_Title.Location = new System.Drawing.Point(8, 13);
             this.Label_Title.Name = "Label_Title";
-            this.Label_Title.Size = new System.Drawing.Size(34, 17);
+            this.Label_Title.Size = new System.Drawing.Size(35, 19);
             this.Label_Title.TabIndex = 4;
             this.Label_Title.Text = "新建";
             this.Label_Title.Click += new System.EventHandler(this.Label_Title_Click);
+            this.Label_Title.MouseEnter += new System.EventHandler(this.Label_Title_MouseEnter);
+            this.Label_Title.MouseLeave += new System.EventHandler(this.Label_Title_MouseLeave);
             // 
             // Label_Arrow
             // 
@@ -56,7 +58,7 @@
             this.Label_Arrow.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.Label_Arrow.Location = new System.Drawing.Point(132, 13);
             this.Label_Arrow.Name = "Label_Arrow";
-            this.Label_Arrow.Size = new System.Drawing.Size(18, 17);
+            this.Label_Arrow.Size = new System.Drawing.Size(19, 19);
             this.Label_Arrow.TabIndex = 5;
             this.Label_Arrow.Text = ">";
             this.Label_Arrow.Visible = false;
@@ -70,9 +72,11 @@
             this.Label_ShortKey.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.Label_ShortKey.Location = new System.Drawing.Point(63, 13);
             this.Label_ShortKey.Name = "Label_ShortKey";
-            this.Label_ShortKey.Size = new System.Drawing.Size(69, 17);
+            this.Label_ShortKey.Size = new System.Drawing.Size(70, 19);
             this.Label_ShortKey.TabIndex = 6;
             this.Label_ShortKey.Text = "Ctrl+Shift";
+            this.Label_ShortKey.MouseEnter += new System.EventHandler(this.Label_ShortKey_MouseEnter);
+            this.Label_ShortKey.MouseLeave += new System.EventHandler(this.Label_ShortKey_MouseLeave);
             // 
             // toolTip1
             // 
@@ -80,7 +84,7 @@
             // 
             // UserControl_MenuItem
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.Label_Title);
@@ -90,6 +94,8 @@
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
             this.Name = "UserControl_MenuItem";
             this.Size = new System.Drawing.Size(150, 43);
+            this.MouseEnter += new System.EventHandler(this.UserControl_MenuItem_MouseEnter);
+            this.MouseLeave += new System.EventHandler(this.UserControl_MenuItem_MouseLeave);
             this.ResumeLayout(false);
             this.PerformLayout();
 

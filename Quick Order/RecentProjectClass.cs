@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
+using System.IO;
 
 namespace Quick_Order
 {
@@ -87,6 +88,14 @@ namespace Quick_Order
             SaveSettings();
         }
 
+        public void DeleteProjectrow(string projectPath)
+        {
+            DataRow[] rows = RecentTable.Select(string.Format("ProjectName = '{0}'", Path.GetFileNameWithoutExtension(CommonUsages.CurrentProjectPath)));
+            if (rows.Length > 0)
+            {
+                RecentTable.Rows.Remove(rows[0]);
+            }
+        }
         public void AddANewProject(string projectPath)
         {
             string projectName = System.IO.Path.GetFileNameWithoutExtension(projectPath);

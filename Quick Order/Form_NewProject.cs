@@ -36,11 +36,11 @@ namespace Quick_Order
             }
 
             string tmpPath = CommonUsages.PathCombine(projectFolder, projectName) + CommonUsages.ProjectSuffix;
-            if (System.IO.File.Exists(tmpPath)==true)
-            {
-                CommonUsages.MyMsgBox("该文件已存在，请修改！", CommonUsages.MsgBoxTypeEnum.Warning);
-                return;
-            }
+            //if (System.IO.File.Exists(tmpPath) == true)
+            //{
+            //    CommonUsages.MyMsgBox("该文件已存在，请修改！", CommonUsages.MsgBoxTypeEnum.Warning);
+            //    return;
+            //}
 
             SelectedProjectPath = tmpPath;
 
@@ -66,6 +66,16 @@ namespace Quick_Order
 
         private void Form_NewProject_Load(object sender, EventArgs e)
         {
+        }
+
+        private void Button_Cancel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form_NewProject_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.OpenForms["Form_Panel"].Close();
         }
     }
 }

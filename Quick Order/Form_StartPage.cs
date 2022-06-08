@@ -12,6 +12,7 @@ using DevExpress.Utils.Drawing;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraSplashScreen;
+using System.IO;
 
 namespace Quick_Order
 {
@@ -110,7 +111,7 @@ namespace Quick_Order
             if (this.WindowState == FormWindowState.Normal)
             {
                 this.WindowState = FormWindowState.Maximized;
-                pictureBoxMaxForm.Image = Properties.Resources.pic_nomalform;
+                pictureBoxMaxForm.Image = Properties.Resources.pic_min1;
                 toolTip1.SetToolTip(pictureBoxMaxForm, "恢复");
             }
             else
@@ -158,10 +159,58 @@ namespace Quick_Order
 
         private void Button_NewProject_Click(object sender, EventArgs e)
         {
-            CommonUsages.CurrentProjectPath = "";
+            Form_Panel form_Panel = new Form_Panel(this.Location, this.Size);
+            form_Panel.Show(this);
+
+            Form_NewProject newForm = new Form_NewProject();
+            newForm.label9.Text = "新建项目名";
+
+            if (newForm.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+            string errMsg = "";
+            if (NewAProject(Form_NewProject.SelectedProjectPath, ref errMsg) == false)
+            {
+                CommonUsages.MyMsgBox(string.Format("新建项目出错。 {0}", errMsg), CommonUsages.MsgBoxTypeEnum.Error);
+                return;
+            }
+            SaveProject();
+
+            //CommonUsages.CurrentProjectPath = "";
             ShowEventMain();
         }
 
+        private bool NewAProject(string newProjectPath, ref string errMsg)
+        {
+            CommonUsages.CurrentProjectPath = newProjectPath;
+
+            SQLiteCreatClassProject.SQLiteCreatClassInit(newProjectPath);
+
+            string curName = Path.GetFileNameWithoutExtension(newProjectPath);
+            //Label_Title.Text = string.Format("{0}_{1}", CommonUsages.SoftwareName, curName);
+            //Label_ProjectName.Text = curName;
+
+            if (DBClass.GetInstance().LoadSqliteTableDatas(newProjectPath, ref errMsg) == false) return false;
+
+            CommonUsages.RecentProjectClassInst.AddANewProject(newProjectPath);
+            return true;
+        }
+        private void SaveProject()
+        {
+            SplashScreenManager.ShowForm(null, typeof(Form_Wait), false, false, false);
+
+            string errMsg = "";
+            bool result = DBClass.GetInstance().SaveAllDataToSqlite(CommonUsages.CurrentProjectPath, ref errMsg);
+
+            CommonUsages.RecentProjectClassInst.RefreshProjectEditTime(CommonUsages.CurrentProjectPath);
+
+            SplashScreenManager.CloseForm(false);
+
+            if (result == false) CommonUsages.MyMsgBox(errMsg, CommonUsages.MsgBoxTypeEnum.Error);
+
+            //AddTitleFix(false);
+        }
         private void gridView1_CustomColumnDisplayText(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs e)
         {
             if (e.Column.FieldName == RecentProjectClass.COLNAME_RECENTPROJECT_EDITEEDTIME)
@@ -191,6 +240,10 @@ namespace Quick_Order
         {
             Form_Main evtForm = new Form_Main();           
             evtForm.DoBackToStart = new Form_Main.BackToStartDelegate(UnHide);
+            string curName = Path.GetFileNameWithoutExtension(CommonUsages.CurrentProjectPath);
+            evtForm.Label_Title.Text = string.Format("{0}_{1}", CommonUsages.SoftwareName, curName);
+            evtForm.Label_ProjectName.Text = curName;
+            evtForm.CurrentPanelSettings = null;
             this.Hide();
             evtForm.Show();
         }
@@ -264,6 +317,66 @@ namespace Quick_Order
                     CommonUsages.MyMsgBox("该项目文件不存在。", CommonUsages.MsgBoxTypeEnum.Warning);
                 }
             }
+        }
+
+        private void Button_NewProject_MouseEnter(object sender, EventArgs e)
+        {
+            this.Button_NewProject.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(114)))), ((int)(((byte)(178)))));
+        }
+
+        private void Button_NewProject_MouseLeave(object sender, EventArgs e)
+        {
+            this.Button_NewProject.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(123)))), ((int)(((byte)(194)))));
+        }
+
+        private void Button_NewProject_MouseDown(object sender, MouseEventArgs e)
+        {
+            this.Button_NewProject.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(96)))), ((int)(((byte)(140)))));
+        }
+
+        private void Button_OpenProject_MouseDown(object sender, MouseEventArgs e)
+        {
+            this.Button_OpenProject.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(96)))), ((int)(((byte)(140)))));
+        }
+        private void Button_OpenProject_MouseLeave(object sender, EventArgs e)
+        {
+            this.Button_OpenProject.BackColor = Color.White;
+        }
+        private void pictureBox_MinForm_MouseEnter(object sender, EventArgs e)
+        {
+            //this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(96)))), ((int)(((byte)(140)))));
+            this.pictureBox_MinForm.BackColor = System.Drawing.Color.Silver;
+        }
+
+        private void pictureBox_MinForm_MouseMove(object sender, MouseEventArgs e)
+        {
+            //this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            //this.BackColor = Color.Red;
+        }
+
+        private void pictureBox_MinForm_MouseLeave(object sender, EventArgs e)
+        {
+            this.pictureBox_MinForm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+        }
+
+        private void pictureBoxMaxForm_MouseEnter(object sender, EventArgs e)
+        {
+            this.pictureBoxMaxForm.BackColor = System.Drawing.Color.Silver;
+        }
+
+        private void pictureBoxMaxForm_MouseLeave(object sender, EventArgs e)
+        {
+            this.pictureBoxMaxForm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+        }
+
+        private void pictureBox_CloseForm_MouseEnter(object sender, EventArgs e)
+        {
+            this.pictureBox_CloseForm.BackColor = System.Drawing.Color.Silver;
+        }
+
+        private void pictureBox_CloseForm_MouseLeave(object sender, EventArgs e)
+        {
+            this.pictureBox_CloseForm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
         }
     }
 }

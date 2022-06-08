@@ -34,7 +34,7 @@ namespace Quick_Order
 
         private Dictionary<DataTable, string> DataTableMap = new Dictionary<DataTable, string>();
 
-        private Int64 CurrentFitingsID = -1;
+        private Int64 CurrentFitingsID = -1;      
 
         DBClass()
         {
@@ -297,16 +297,68 @@ namespace Quick_Order
             }
 
             newProjectRow["Cat"] = "Panel";
-            newProjectRow["Other"] = "";
+            newProjectRow["Other"] = "1";
             newProjectRow["Price"] = 0;
             ProjectMemoryTable.Rows.Add(newProjectRow);
 
             if (panel.PanelType == BasicPanelSettings.PANELTYPE_N6000P)
-                AddAPanelSettingRow(new ModelProperty(BasicPanelSettings.PANELTYPE_N6000P_MODELNAME), panelID, 1);
+            {
+                AddAPanelSettingRow(new ModelProperty(BasicPanelSettings.PANELTYPE_N6000P_MODELNAME), panelID, 1);              
+                //AddAPanelSettingRow(new ModelProperty(ModelTypeEnum.Printer), panelID, 1);
+
+                AddAPanelSettingRow(new ModelProperty(ModelTypeEnum.WuKaiKongBan), panelID, 4);
+                AddAPanelSettingRow(new ModelProperty(ModelTypeEnum.U2Board), panelID, 1);
+                AddAPanelSettingRow(new ModelProperty(ModelTypeEnum.U3Board), panelID, 2);
+                AddAPanelSettingRow(new ModelProperty(ModelTypeEnum.U4Board), panelID, 1);
+                //AddAPanelSettingRow(new ModelProperty(ModelTypeEnum.LCM_Holder), panelID, 1);
+
+            }
             if (panel.PanelType == BasicPanelSettings.PANELTYPE_N6000PBIGUA)
+            {
                 AddAPanelSettingRow(new ModelProperty(BasicPanelSettings.PANELTYPE_N6000PBIGUA_MODELNAME), panelID, 1);
+                //AddAPanelSettingRow(new ModelProperty(ModelTypeEnum.Printer), panelID, 1);
+                AddAPanelSettingRow(new ModelProperty(ModelTypeEnum.WuKaiKongBan), panelID, 2);
+            }
+               
 
             return panelID;
+        }
+
+        public Int64 AddANewPanel(BasicPanelSettings panel,string others)
+        {
+            //Int64 panelID = GetCurrentMaxProjectID() + 1;
+
+            //DataRow newProjectRow = ProjectMemoryTable.NewRow();
+            //newProjectRow["ID"] = panelID;
+            //newProjectRow["SystemType"] = panel.SystemType;
+            //newProjectRow["ItemType"] = panel.PanelType;
+            //newProjectRow["Name"] = panel.PanelLabel;
+            //newProjectRow["Picture"] = Properties.Resources.控制器;
+            //if (panel.PanelType == BasicPanelSettings.PANELTYPE_N6000P)
+            //{
+            //    newProjectRow["LeftPanel"] = Properties.Resources.主机正面_基础配置01;
+            //    newProjectRow["MiddlePanel"] = Properties.Resources.主机开机正面_基础配置;
+            //    newProjectRow["RightPanel"] = Properties.Resources.主机背面__基础配置;
+            //}
+            //if (panel.PanelType == BasicPanelSettings.PANELTYPE_N6000PBIGUA)
+            //{
+            //    newProjectRow["LeftPanel"] = Properties.Resources._6000P_壁挂_主机正面_基础配置;
+            //    newProjectRow["MiddlePanel"] = Properties.Resources._6000P_壁挂_主机开机正面__基础配置;
+            //    newProjectRow["RightPanel"] = null;
+            //}
+
+            //newProjectRow["Cat"] = "Panel";
+            //newProjectRow["Other"] = others;
+            //newProjectRow["Price"] = 0;
+            //ProjectMemoryTable.Rows.Add(newProjectRow);
+
+            //if (panel.PanelType == BasicPanelSettings.PANELTYPE_N6000P)
+               // AddAPanelSettingRow(new ModelProperty(BasicPanelSettings.PANELTYPE_N6000P_MODELNAME), panelID, 1);
+            //if (panel.PanelType == BasicPanelSettings.PANELTYPE_N6000PBIGUA)
+            //    AddAPanelSettingRow(new ModelProperty(BasicPanelSettings.PANELTYPE_N6000PBIGUA_MODELNAME), panelID, 1);
+
+            //return panelID;
+            return 1;
         }
 
         private Int64 DefaultFittingID = 99999;
@@ -562,22 +614,26 @@ namespace Quick_Order
             if (curPanelSettings.PanelType == BasicPanelSettings.PANELTYPE_N6000P)
             {
                 N6000PPanelSettings subSettings = curPanelSettings as N6000PPanelSettings;
-                RefreshPanelSettingRowByModelType(ModelTypeEnum.LCM_Holder, curPanelSettings, subSettings.GetLCMHolderBoardCount(), false);
+                RefreshPanelSettingRowByModelType(ModelTypeEnum.LCM_Holder, curPanelSettings, subSettings.GetFrontOpenBeibanCount(), false);
                 RefreshPanelSettingRowByModelType(ModelTypeEnum.LCM_Board, curPanelSettings, subSettings.GetLCMHolderBoardCount(), false);
                 RefreshPanelSettingRowByModelType(ModelTypeEnum.POM_Holder, curPanelSettings, subSettings.GetPOMHolderCount(), false);
-                RefreshPanelSettingRowByModelType(ModelTypeEnum.POM_Board, curPanelSettings, subSettings.GetPOMBoardCount(), false);
-                RefreshPanelSettingRowByModelType(ModelTypeEnum.POM_OperateBoard, curPanelSettings, subSettings.GetPOMOperateBoardCount(), false);
+                //RefreshPanelSettingRowByModelType(ModelTypeEnum.POM_Board, curPanelSettings, subSettings.GetPOMBoardCount(), false);
+                //RefreshPanelSettingRowByModelType(ModelTypeEnum.POM_OperateBoard, curPanelSettings, subSettings.GetPOMOperateBoardCount(), false);
                 RefreshPanelSettingRowByModelType(ModelTypeEnum.XianChao, curPanelSettings, subSettings.GetXianChaoCount(), false);
                 RefreshPanelSettingRowByModelType(ModelTypeEnum.U2Board, curPanelSettings, subSettings.GetU2Count(), false);
                 RefreshPanelSettingRowByModelType(ModelTypeEnum.U3Board, curPanelSettings, subSettings.GetU3Count(), false);
+                RefreshPanelSettingRowByModelType(ModelTypeEnum.U4Board, curPanelSettings, subSettings.GetU4Count(), false);
+                //RefreshPanelSettingRowByModelType(ModelTypeEnum.WuKaiKongBan, curPanelSettings, subSettings.GetBMP_6PCount(), false);
                 RefreshPanelSettingRowByModelType(ModelTypeEnum.WuKaiKongBan, curPanelSettings, subSettings.GetWuKaiKongChenban(), false);
                 RefreshPanelSettingRowByModelType(ModelTypeEnum.FuShanye, curPanelSettings, subSettings.GetFuShanyeCount(), false);
+                //RefreshPanelSettingRowByModelType(ModelTypeEnum.FuShanye, curPanelSettings, subSettings.GetFuShanyeCount(), false);
             }
             if (curPanelSettings.PanelType == BasicPanelSettings.PANELTYPE_N6000PBIGUA)
             {
                 N6000PBiGuaSettings subSettings = curPanelSettings as N6000PBiGuaSettings;
-                RefreshPanelSettingRowByModelType(ModelTypeEnum.LCM_Holder, curPanelSettings, subSettings.GetLCMHolderBoardCount(), false);
+                //RefreshPanelSettingRowByModelType(ModelTypeEnum.LCM_Holder, curPanelSettings, subSettings.GetLCMHolderBoardCount(), false);
                 RefreshPanelSettingRowByModelType(ModelTypeEnum.LCM_Board, curPanelSettings, subSettings.GetLCMHolderBoardCount(), false);
+                RefreshPanelSettingRowByModelType(ModelTypeEnum.WuKaiKongBan, curPanelSettings, subSettings.GetWuKaiKongChenban(), false);
             }
         }
 
@@ -588,7 +644,7 @@ namespace Quick_Order
         public void RefreshAFittingSetitingRow(string model, int count)
         {
             DataRow findRow = ModelSettingsMemoryTable.Rows.Find(new object[] { model, CurrentFitingsID });
-            if (count == 0)
+            if (count <= 0)
             {                
                 if (findRow != null)
                 {
@@ -712,6 +768,7 @@ namespace Quick_Order
             foreach (DataRow itemRow in ProjectMemoryTable.Rows)
             {
                 Int64 itemID = Convert.ToInt64(itemRow["ID"]);
+                itemRow["Price"] = 0;
                 if (priceList.ContainsKey(itemID) == true)
                 {
                     itemRow["Price"] = priceList[itemID];
@@ -1206,6 +1263,64 @@ namespace Quick_Order
             }
 
             return true;
+        }
+        public  void AddADatatableRow(Int64 itemID, string others)
+        {
+            //复制ProjectMemoryTable
+
+            Int64 Id = GetCurrentMaxProjectID();
+            DataRow[] row1 = ProjectMemoryTable.Select(
+                                            "ID = " + itemID
+                                                            );
+            DataRow newRow1 = ProjectMemoryTable.NewRow();
+
+            
+            newRow1["ID"] = Id + 1;
+            newRow1["SystemType"] = row1[0]["SystemType"].ToString();
+            newRow1["ItemType"] = row1[0]["ItemType"].ToString();
+            newRow1["Name"] = row1[0]["Name"] + "复制";
+
+            newRow1["Picture"] = row1[0]["Picture"];
+            newRow1["LeftPanel"] = row1[0]["LeftPanel"]; 
+            newRow1["MiddlePanel"] = row1[0]["MiddlePanel"]; 
+            newRow1["RightPanel"] = row1[0]["RightPanel"];
+            newRow1["Price"] = row1[0]["Price"];
+            newRow1["Cat"] = row1[0]["Cat"];
+            newRow1["Other"] = others;
+
+            ProjectMemoryTable.Rows.Add(newRow1);
+
+            //string ItemID = "ItemID";
+            //DataColumn dc = ModelSettingsMemoryTable.getc
+            DataRow[] row = ModelSettingsMemoryTable.Select(
+                                            "ItemID = " + itemID
+                                                            );
+
+            // DataRow findRow = ModelSettingsMemoryTable.Rows.Find(","+"");
+            foreach (DataRow item in row)
+            {
+                DataRow newRow = ModelSettingsMemoryTable.NewRow();
+                newRow["Model"] = item["Model"];
+                newRow["ItemID"] = Id + 1;
+
+                newRow["Cat"] = item["Cat"];
+
+                newRow["ModelType"] = item["ModelType"];
+                newRow["Picture"] = item["Picture"];
+
+                newRow["Label"] = item["Label"];
+                newRow["Comment"] = item["Comment"];
+
+                newRow["Count"] = item["Count"]; ;
+                newRow["UnitPrice"] = item["UnitPrice"];
+                newRow["TotalPrice"] = item["TotalPrice"];
+
+                newRow["Other"] = others;
+
+                ModelSettingsMemoryTable.Rows.Add(newRow);
+
+            }
+            
         }
 
     }

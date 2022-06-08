@@ -128,18 +128,42 @@
       <DependentUpon>CustomScrollbar.cs</DependentUpon>
     </Compile>
     <Compile Include="DBClass.cs" />
+    <Compile Include="ExtendedPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ExtendedPanel.Designer.cs">
+      <DependentUpon>ExtendedPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="FittingsSettings.cs" />
+    <Compile Include="Form_EditControlCount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_EditControlCount.Designer.cs">
+      <DependentUpon>Form_EditControlCount.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form_NewPanelType.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form_NewPanelType.Designer.cs">
       <DependentUpon>Form_NewPanelType.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form_NewName.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_NewName.Designer.cs">
+      <DependentUpon>Form_NewName.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form_NewProject.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form_NewProject.Designer.cs">
       <DependentUpon>Form_NewProject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Panel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Panel.Designer.cs">
+      <DependentUpon>Form_Panel.cs</DependentUpon>
     </Compile>
     <Compile Include="Form_Report.cs">
       <SubType>Form</SubType>
@@ -218,11 +242,20 @@
     <EmbeddedResource Include="CustomScrollbar.resx">
       <DependentUpon>CustomScrollbar.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form_EditControlCount.resx">
+      <DependentUpon>Form_EditControlCount.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form_NewPanelType.resx">
       <DependentUpon>Form_NewPanelType.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form_NewName.resx">
+      <DependentUpon>Form_NewName.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form_NewProject.resx">
       <DependentUpon>Form_NewProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Panel.resx">
+      <DependentUpon>Form_Panel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_Report.resx">
       <DependentUpon>Form_Report.cs</DependentUpon>
@@ -310,6 +343,31 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Logo.ico" />
+    <Content Include="Resources\组 663.png" />
+    <None Include="Resources\主机配置图\SCAB_6P_4U.JPG" />
+    <None Include="Resources\主机配置图\SCAB_6P_DR.JPG" />
+    <None Include="Resources\主机配置图\SCAB_6000P_V3.JPG" />
+    <None Include="Resources\主机配置图\SCAB_6P_3U.JPG" />
+    <None Include="Resources\主机配置图\SCAB-6P-DR.JPG" />
+    <None Include="Resources\主机配置图\SCAB-6P-2U.JPG" />
+    <None Include="Resources\主机配置图\主机正面_基础配置021.png" />
+    <None Include="Resources\N_6000P_KIT_V3.bmp" />
+    <None Include="Resources\N_6000P_KIT_V3.jpg.bmp" />
+    <None Include="Resources\主机配置图\LCM_2PG_ZJ.JPG" />
+    <None Include="Resources\主机配置图\BMP_6P.JPG" />
+    <None Include="Resources\主机配置图\BT_12M28AC.JPG" />
+    <None Include="Resources\主机配置图\CPU_6000P_V3.JPG" />
+    <None Include="Resources\主机配置图\DXKZ_MB_6P.JPG" />
+    <None Include="Resources\主机配置图\DXKZ_ZJ_6P.JPG" />
+    <None Include="Resources\主机配置图\LRS_350_24.JPG" />
+    <None Include="Resources\主机配置图\DXKZ_JXB_6P.JPG" />
+    <None Include="Resources\pic_min1.png" />
+    <None Include="Resources\主机配置图\DXKZ_16.JPG" />
+    <None Include="Resources\主机配置图\N6000P_DSP.JPG" />
+    <Content Include="Resources\icon_保存1.png" />
+    <Content Include="Resources\主机配置图\N_6000P_KIT_V3.jpg" />
+    <None Include="Resources\pic_max_1.png" />
+    <None Include="Resources\uncheckbox_1.png" />
     <None Include="Resources\主机配置图\NCA.jpg" />
     <None Include="Resources\主机配置图\消火栓报警按钮.jpg" />
     <None Include="Resources\主机配置图\网络显示器.jpg" />

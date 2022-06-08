@@ -37,6 +37,7 @@
             this.pictureBox_MinForm = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -74,7 +75,7 @@
             this.Panel_Top.Dock = System.Windows.Forms.DockStyle.Top;
             this.Panel_Top.Location = new System.Drawing.Point(0, 0);
             this.Panel_Top.Name = "Panel_Top";
-            this.Panel_Top.Size = new System.Drawing.Size(840, 85);
+            this.Panel_Top.Size = new System.Drawing.Size(840, 78);
             this.Panel_Top.TabIndex = 0;
             this.Panel_Top.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.Panel_Top_MouseDoubleClick);
             this.Panel_Top.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Panel_Top_MouseDown);
@@ -82,9 +83,9 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft YaHei", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(134)));
+            this.label1.Font = new System.Drawing.Font("微软雅黑", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(134)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-            this.label1.Location = new System.Drawing.Point(71, 47);
+            this.label1.Location = new System.Drawing.Point(71, 43);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(116, 24);
             this.label1.TabIndex = 4;
@@ -96,10 +97,12 @@
             this.pictureBox_CloseForm.Image = global::Quick_Order.Properties.Resources.pic_close;
             this.pictureBox_CloseForm.Location = new System.Drawing.Point(809, 0);
             this.pictureBox_CloseForm.Name = "pictureBox_CloseForm";
-            this.pictureBox_CloseForm.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox_CloseForm.Size = new System.Drawing.Size(32, 30);
             this.pictureBox_CloseForm.TabIndex = 3;
             this.pictureBox_CloseForm.TabStop = false;
             this.pictureBox_CloseForm.Click += new System.EventHandler(this.pictureBox_CloseForm_Click);
+            this.pictureBox_CloseForm.MouseEnter += new System.EventHandler(this.pictureBox_CloseForm_MouseEnter);
+            this.pictureBox_CloseForm.MouseLeave += new System.EventHandler(this.pictureBox_CloseForm_MouseLeave);
             // 
             // pictureBoxMaxForm
             // 
@@ -107,10 +110,12 @@
             this.pictureBoxMaxForm.Image = global::Quick_Order.Properties.Resources.pic_max;
             this.pictureBoxMaxForm.Location = new System.Drawing.Point(763, 0);
             this.pictureBoxMaxForm.Name = "pictureBoxMaxForm";
-            this.pictureBoxMaxForm.Size = new System.Drawing.Size(32, 32);
+            this.pictureBoxMaxForm.Size = new System.Drawing.Size(32, 30);
             this.pictureBoxMaxForm.TabIndex = 2;
             this.pictureBoxMaxForm.TabStop = false;
             this.pictureBoxMaxForm.Click += new System.EventHandler(this.pictureBoxMaxForm_Click);
+            this.pictureBoxMaxForm.MouseEnter += new System.EventHandler(this.pictureBoxMaxForm_MouseEnter);
+            this.pictureBoxMaxForm.MouseLeave += new System.EventHandler(this.pictureBoxMaxForm_MouseLeave);
             // 
             // pictureBox_MinForm
             // 
@@ -118,15 +123,18 @@
             this.pictureBox_MinForm.Image = global::Quick_Order.Properties.Resources.pic_min;
             this.pictureBox_MinForm.Location = new System.Drawing.Point(721, 0);
             this.pictureBox_MinForm.Name = "pictureBox_MinForm";
-            this.pictureBox_MinForm.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox_MinForm.Size = new System.Drawing.Size(32, 30);
             this.pictureBox_MinForm.TabIndex = 1;
             this.pictureBox_MinForm.TabStop = false;
             this.pictureBox_MinForm.Click += new System.EventHandler(this.pictureBox_MinForm_Click);
+            this.pictureBox_MinForm.MouseEnter += new System.EventHandler(this.pictureBox_MinForm_MouseEnter);
+            this.pictureBox_MinForm.MouseLeave += new System.EventHandler(this.pictureBox_MinForm_MouseLeave);
+            this.pictureBox_MinForm.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox_MinForm_MouseMove);
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Quick_Order.Properties.Resources.QO_LOGO;
-            this.pictureBox1.Location = new System.Drawing.Point(22, 40);
+            this.pictureBox1.Location = new System.Drawing.Point(22, 37);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(36, 36);
             this.pictureBox1.TabIndex = 0;
@@ -135,31 +143,41 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.panel1.Controls.Add(this.panel5);
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 85);
+            this.panel1.Location = new System.Drawing.Point(0, 78);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(840, 420);
+            this.panel1.Size = new System.Drawing.Size(840, 388);
             this.panel1.TabIndex = 1;
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.White;
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel5.Location = new System.Drawing.Point(809, 0);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(31, 388);
+            this.panel5.TabIndex = 17;
             // 
             // panel3
             // 
             this.panel3.Controls.Add(this.gridControl1);
             this.panel3.Controls.Add(this.panel4);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(220, 0);
+            this.panel3.Location = new System.Drawing.Point(252, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(620, 420);
+            this.panel3.Size = new System.Drawing.Size(588, 388);
             this.panel3.TabIndex = 16;
             // 
             // gridControl1
             // 
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl1.Location = new System.Drawing.Point(0, 55);
+            this.gridControl1.Location = new System.Drawing.Point(0, 51);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(620, 365);
+            this.gridControl1.Size = new System.Drawing.Size(588, 337);
             this.gridControl1.TabIndex = 15;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -168,8 +186,10 @@
             // 
             this.gridView1.Appearance.Empty.BackColor = System.Drawing.Color.White;
             this.gridView1.Appearance.Empty.Options.UseBackColor = true;
+            this.gridView1.Appearance.FocusedRow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(233)))), ((int)(((byte)(250)))));
+            this.gridView1.Appearance.FocusedRow.Options.UseBackColor = true;
             this.gridView1.Appearance.HeaderPanel.BackColor = System.Drawing.Color.White;
-            this.gridView1.Appearance.HeaderPanel.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.gridView1.Appearance.HeaderPanel.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.gridView1.Appearance.HeaderPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(186)))), ((int)(((byte)(186)))));
             this.gridView1.Appearance.HeaderPanel.Options.UseBackColor = true;
             this.gridView1.Appearance.HeaderPanel.Options.UseFont = true;
@@ -179,7 +199,6 @@
             this.gridColumn_ProjectName,
             this.gridColumn_ProjectPath,
             this.gridColumn_LastEditTime});
-            this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.IndicatorWidth = 20;
             this.gridView1.Name = "gridView1";
@@ -194,7 +213,7 @@
             this.gridView1.OptionsCustomization.AllowSort = false;
             this.gridView1.OptionsFilter.AllowFilterEditor = false;
             this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gridView1.OptionsSelection.EnableAppearanceFocusedRow = false;
+            this.gridView1.OptionsSelection.EnableAppearanceHideSelection = false;
             this.gridView1.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Never;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.OptionsView.ShowIndicator = false;
@@ -229,7 +248,7 @@
             // 
             // gridColumn_LastEditTime
             // 
-            this.gridColumn_LastEditTime.AppearanceCell.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.gridColumn_LastEditTime.AppearanceCell.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.gridColumn_LastEditTime.AppearanceCell.ForeColor = System.Drawing.Color.Gray;
             this.gridColumn_LastEditTime.AppearanceCell.Options.UseFont = true;
             this.gridColumn_LastEditTime.AppearanceCell.Options.UseForeColor = true;
@@ -257,15 +276,15 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel4.Location = new System.Drawing.Point(0, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(620, 55);
+            this.panel4.Size = new System.Drawing.Size(588, 51);
             this.panel4.TabIndex = 0;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft YaHei", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(134)));
+            this.label2.Font = new System.Drawing.Font("微软雅黑", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(134)));
             this.label2.ForeColor = System.Drawing.Color.Gray;
-            this.label2.Location = new System.Drawing.Point(0, 17);
+            this.label2.Location = new System.Drawing.Point(0, 16);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(106, 21);
             this.label2.TabIndex = 13;
@@ -279,7 +298,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(220, 420);
+            this.panel2.Size = new System.Drawing.Size(252, 388);
             this.panel2.TabIndex = 14;
             // 
             // Button_OpenProject
@@ -288,34 +307,39 @@
             this.Button_OpenProject.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Button_OpenProject.Font = new System.Drawing.Font("Microsoft YaHei UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.Button_OpenProject.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(146)))), ((int)(((byte)(229)))));
-            this.Button_OpenProject.Location = new System.Drawing.Point(20, 127);
+            this.Button_OpenProject.Location = new System.Drawing.Point(22, 118);
             this.Button_OpenProject.Name = "Button_OpenProject";
             this.Button_OpenProject.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.Button_OpenProject.Size = new System.Drawing.Size(180, 35);
+            this.Button_OpenProject.Size = new System.Drawing.Size(180, 38);
             this.Button_OpenProject.TabIndex = 13;
             this.Button_OpenProject.TabStop = false;
             this.Button_OpenProject.Text = "在电脑打开";
             this.Button_OpenProject.UseVisualStyleBackColor = false;
             this.Button_OpenProject.Click += new System.EventHandler(this.Button_OpenProject_Click);
+            this.Button_OpenProject.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Button_OpenProject_MouseDown);
+            this.Button_OpenProject.MouseLeave += new System.EventHandler(this.Button_OpenProject_MouseLeave);
             // 
             // Button_NewProject
             // 
-            this.Button_NewProject.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(146)))), ((int)(((byte)(229)))));
+            this.Button_NewProject.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(123)))), ((int)(((byte)(194)))));
             this.Button_NewProject.FlatAppearance.BorderSize = 0;
             this.Button_NewProject.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Button_NewProject.Font = new System.Drawing.Font("Microsoft YaHei UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.Button_NewProject.ForeColor = System.Drawing.Color.White;
             this.Button_NewProject.Image = global::Quick_Order.Properties.Resources.Icon_新建项目;
             this.Button_NewProject.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Button_NewProject.Location = new System.Drawing.Point(20, 49);
+            this.Button_NewProject.Location = new System.Drawing.Point(22, 40);
             this.Button_NewProject.Name = "Button_NewProject";
             this.Button_NewProject.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.Button_NewProject.Size = new System.Drawing.Size(180, 35);
+            this.Button_NewProject.Size = new System.Drawing.Size(180, 38);
             this.Button_NewProject.TabIndex = 12;
             this.Button_NewProject.TabStop = false;
             this.Button_NewProject.Text = "   新建采购项目";
             this.Button_NewProject.UseVisualStyleBackColor = false;
             this.Button_NewProject.Click += new System.EventHandler(this.Button_NewProject_Click);
+            this.Button_NewProject.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Button_NewProject_MouseDown);
+            this.Button_NewProject.MouseEnter += new System.EventHandler(this.Button_NewProject_MouseEnter);
+            this.Button_NewProject.MouseLeave += new System.EventHandler(this.Button_NewProject_MouseLeave);
             // 
             // toolTip1
             // 
@@ -331,16 +355,16 @@
             // 
             // Form_StartPage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(840, 505);
+            this.ClientSize = new System.Drawing.Size(840, 466);
+            this.ControlBox = false;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.Panel_Top);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form_StartPage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Quick Order";
             this.Load += new System.EventHandler(this.Form_StartPage_Load);
             this.Panel_Top.ResumeLayout(false);
             this.Panel_Top.PerformLayout();
@@ -381,6 +405,7 @@
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button Button_OpenProject;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Panel panel5;
     }
 }
 

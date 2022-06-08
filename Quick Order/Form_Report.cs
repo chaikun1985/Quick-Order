@@ -39,6 +39,11 @@ namespace Quick_Order
 
         private string CurrentSortMode = "Device";
 
+        private decimal CopyTotalPrice = 0;
+
+        public static DataSet ds = new DataSet();
+
+        public bool IsSave = false;
         private void Form_Report_Load(object sender, EventArgs e)
         {
             SplashScreenManager.ShowForm(null, typeof(Form_Wait), false, false, false);
@@ -165,13 +170,18 @@ namespace Quick_Order
                 QDMD_Report = new XtraReport_QDMasterDetail();
                 QDMD_Report.InitPage(CheckEdit_ShowPanelPicture.Checked);
 
-                decimal allTotalPrice = DBClass.GetInstance().FillPanelReportTable();               
-                QDMD_Report.DataSource = DBClass.GetInstance().DataSetAll;
+                decimal allTotalPrice = DBClass.GetInstance().FillPanelReportTable();   
                 
+                //DataSet ds = DBClass.GetInstance().DataSetAll;            
+                //QDMD_Report.DataSource = ds;
+                QDMD_Report.DataSource = FillDataSource();
+
                 string projectName = System.IO.Path.GetFileNameWithoutExtension(CommonUsages.CurrentProjectPath);
                 QDMD_Report.Label_HeadTitle.Text = string.Format("项目配置清单：{0}", projectName);
                 QDMD_Report.Label_HeadTitle2.Text = projectName;
-                QDMD_Report.Label_HeadTotalPrice.Text = string.Format("￥{0}", allTotalPrice);
+                //QDMD_Report.Label_HeadTotalPrice.Text = string.Format("￥{0}", allTotalPrice); CopyTotalPrice
+
+                QDMD_Report.Label_HeadTotalPrice.Text = string.Format("￥{0}", CopyTotalPrice);
 
                 QDMD_Report.CreateDocument();
             }
@@ -181,12 +191,15 @@ namespace Quick_Order
                 QDMD_Report_Excel.InitPage(CheckEdit_ShowPanelPicture.Checked, true);
 
                 decimal allTotalPrice = DBClass.GetInstance().FillPanelReportTable();
-                QDMD_Report_Excel.DataSource = DBClass.GetInstance().DataSetAll;
+                //QDMD_Report_Excel.DataSource = DBClass.GetInstance().DataSetAll;
+
+                QDMD_Report_Excel.DataSource = FillDataSource();
 
                 string projectName = System.IO.Path.GetFileNameWithoutExtension(CommonUsages.CurrentProjectPath);
                 QDMD_Report_Excel.Label_HeadTitle.Text = string.Format("项目配置清单：{0}", projectName);
                 QDMD_Report_Excel.Label_HeadTitle2.Text = projectName;
-                QDMD_Report_Excel.Label_HeadTotalPrice.Text = string.Format("￥{0}", allTotalPrice);
+                //QDMD_Report_Excel.Label_HeadTotalPrice.Text = string.Format("￥{0}", allTotalPrice);
+                QDMD_Report_Excel.Label_HeadTotalPrice.Text = string.Format("￥{0}", CopyTotalPrice);
 
                 QDMD_Report_Excel.CreateDocument();
             }
@@ -197,7 +210,10 @@ namespace Quick_Order
                 QD_Report = new XtraReport_QD();
                 QD_Report.InitPage(CheckEdit_ShowPanelPicture.Checked);
 
-                decimal allTotalPrice = DBClass.GetInstance().FillDevicesReportTable();
+                //decimal allTotalPrice = DBClass.GetInstance().FillDevicesReportTable();
+                decimal allTotalPrice = FillDevicesDataSource();
+                //QDMD_Report.DataSource = ds.Tables[2];
+                //QD_Report.DataSource = ds;
 
                 string projectName = System.IO.Path.GetFileNameWithoutExtension(CommonUsages.CurrentProjectPath);
                 QD_Report.Label_HeadTitle.Text = string.Format("项目配置清单：{0}", projectName);
@@ -211,7 +227,9 @@ namespace Quick_Order
                 QD_Report_Excel = new XtraReport_QD();
                 QD_Report_Excel.InitPage(CheckEdit_ShowPanelPicture.Checked, true);
 
-                decimal allTotalPrice = DBClass.GetInstance().FillDevicesReportTable();
+                //decimal allTotalPrice = DBClass.GetInstance().FillDevicesReportTable();
+                decimal allTotalPrice = FillDevicesDataSource();
+                //QD_Report_Excel.DataSource = ds;
 
                 string projectName = System.IO.Path.GetFileNameWithoutExtension(CommonUsages.CurrentProjectPath);
                 QD_Report_Excel.Label_HeadTitle.Text = string.Format("项目配置清单：{0}", projectName);
@@ -235,8 +253,8 @@ namespace Quick_Order
 
             if (saveDialog.ShowDialog()==DialogResult.OK)
             {
-                string excel1Path = CommonUsages.PathCombine(CommonUsages.TempFolder, string.Format("e1_{0}", DateTime.Now.ToString("yy_MM_dd_HH_mm_ss")));
-                string excel2Path = CommonUsages.PathCombine(CommonUsages.TempFolder, string.Format("e2_{0}", DateTime.Now.ToString("yy_MM_dd_HH_mm_ss")));
+                string excel1Path = CommonUsages.PathCombine(CommonUsages.TempFolder, string.Format("e1_{0}.xlsx", DateTime.Now.ToString("yy_MM_dd_HH_mm_ss")));
+                string excel2Path = CommonUsages.PathCombine(CommonUsages.TempFolder, string.Format("e2_{0}.xlsx", DateTime.Now.ToString("yy_MM_dd_HH_mm_ss")));
                 try
                 {
                     SplashScreenManager.ShowForm(null, typeof(Form_Wait), false, false, false);                   
@@ -255,6 +273,9 @@ namespace Quick_Order
 
                     SplashScreenManager.CloseForm(false);
                     CommonUsages.MyMsgBox("导出成功。", CommonUsages.MsgBoxTypeEnum.Info);
+
+                    //保存配置
+                    IsSave = true;
                 }
                 catch (Exception ee)
                 {
@@ -344,6 +365,332 @@ namespace Quick_Order
             {
                 this.Close();
             }
+        }
+        private DataSet FillDataSource()
+        {
+            
+            DataSet dsTemp = DBClass.GetInstance().DataSetAll;
+
+            DataTable dtProjectTemp = dsTemp.Tables[0];
+            //DataTable dtProject = dtProjectTemp.Copy() ; //不知道为什么copy时候，price那一列数据复制不过去，是否跟数据类型有关系？？？
+            DataTable dtProject = dtProjectTemp.Clone();
+            dtProject.PrimaryKey = null;
+            dtProject.Columns.Add("sortId", typeof(Int64));
+            int tempRowHandle = 0;
+            foreach (DataRow item in dtProjectTemp.Rows)
+            {
+                dtProject.Rows.Add(item.ItemArray);
+                dtProject.Rows[tempRowHandle]["sortId"] = item["ID"]; //sortId对应原先老的id
+                tempRowHandle++;
+                //dtProject.ImportRow(item);
+            }
+
+            DataTable dtModelSettingsTemp = dsTemp.Tables[1];
+            DataTable dtModelSettings = dtModelSettingsTemp.Copy();
+
+            DataTable dtmodelDevicesTemp = dsTemp.Tables[2];
+            DataTable dtmodelDevices = dtmodelDevicesTemp.Copy();
+
+            // 处理下数量的问题
+            int id = 1;
+            foreach (DataRow item in dtProject.Rows)
+            {
+                 //id从1开始
+                if (item["Cat"].ToString() == "Panel")
+                {
+                    int Others = int.Parse(item["Other"].ToString());
+                    
+                    //先修改关联的  ModelSettings表的值
+                    DataRow[] drs = dtModelSettings.Select(string.Format("ItemID = {0}", Convert.ToInt64(item["ID"]) ));
+                    foreach (DataRow itemModelSettings in drs)
+                    {
+                        itemModelSettings["ItemID"] = 10000 +id;
+                    }
+                    item["ID"] = 10000 + id;
+                    id = id + Others; //这个id是下一行数据的id值
+
+                }
+            }
+            foreach (DataRow item in dtProject.Rows)
+            {
+                if (item["Cat"].ToString() == "Panel")
+                {
+                    item["ID"] =int.Parse(item["ID"].ToString())  - 10000;
+                }
+            }
+            foreach (DataRow item in dtModelSettings.Rows)
+            {
+                if (item["Cat"].ToString() == "Panel")
+                {
+                    item["ItemID"] = int.Parse(item["ItemID"].ToString()) - 10000;
+                }              
+            }
+
+            //以下将复制的给
+            Int64 IdChang = 0;
+            int OtherChang = 0;
+            foreach (DataRow drProjecttemp in dtProjectTemp.Rows)
+            {
+                if (drProjecttemp["Cat"].ToString() == "Panel" && !string.IsNullOrEmpty(drProjecttemp["Other"].ToString())  && Int64.Parse(drProjecttemp["Other"].ToString())  > 1)
+                {
+                    //drProjecttemp["sortId"] = GetCurrentTableIDColumn(dtProject);  //sortId这里表示的是排序
+                    Int64 SortIdFont = Int64.Parse(drProjecttemp["ID"].ToString());
+                    string TempName = drProjecttemp["Name"].ToString();
+                    //drProjecttemp["Name"] = drProjecttemp["Name"] + "-" + "1";
+                     //IdChang = Convert.ToInt16(SortIdFont)  + OtherChang ;
+
+                    DataRow[] drs = dtProject.Select(string.Format("sortId = {0}", SortIdFont.ToString()));
+                    drs[0]["Name"] = drProjecttemp["Name"] + "-" + "1";
+                    IdChang = Convert.ToInt64(drs[0]["ID"]);
+                    Int64 IdSource = Int64.Parse(drProjecttemp["ID"].ToString()) ;
+                    
+                    for (int i = 1; i < Int64.Parse(drProjecttemp["Other"].ToString()); i++)
+                    {
+                        DataRow dr = dtProject.NewRow();
+                        //dr = drProject.ItemArray as DataRow;
+                        //Int64 Id = GetCurrentTableID(dtProject);
+                        dr["ID"] = IdChang + i;
+                        dr["SystemType"] = drProjecttemp["SystemType"].ToString();
+                        dr["ItemType"] = drProjecttemp["ItemType"].ToString();
+                        dr["Name"] = TempName + "-" + (i +1) .ToString();
+
+                        dr["Picture"] = drProjecttemp["Picture"];
+                        dr["LeftPanel"] = drProjecttemp["LeftPanel"];
+                        dr["MiddlePanel"] = drProjecttemp["MiddlePanel"];
+                        dr["RightPanel"] = drProjecttemp["RightPanel"];
+                        dr["Price"] = drProjecttemp["Price"];
+                        dr["Cat"] = drProjecttemp["Cat"];
+                        dr["Other"] = drProjecttemp["Other"];
+                        dr["sortId"] = SortIdFont ;
+                        dtProject.Rows.Add(dr);
+
+                        DataRow[] row = dtModelSettingsTemp.Select(
+                                           "ItemID = " + IdSource
+                                                           );
+
+                        foreach (DataRow item in row)
+                        {
+                            DataRow newRow = dtModelSettings.NewRow();
+                            newRow["ID"] = item["ID"];
+                            newRow["Model"] = item["Model"];
+                            newRow["ItemID"] = IdChang + i;
+
+                            newRow["Cat"] = item["Cat"];
+
+                            newRow["ModelType"] = item["ModelType"];
+                            newRow["Picture"] = item["Picture"];
+                             
+                            newRow["Label"] = item["Label"];
+                            newRow["Comment"] = item["Comment"];
+
+                            newRow["Count"] = item["Count"]; ;
+                            newRow["UnitPrice"] = item["UnitPrice"];
+                            newRow["TotalPrice"] = item["TotalPrice"];
+
+                            newRow["Other"] = "1";
+
+                            dtModelSettings.Rows.Add(newRow);
+                        }
+                       // IdChang++;
+                    }
+                    OtherChang = int.Parse(drProjecttemp["Other"].ToString())  ;
+                }
+            }
+            if (ds.Tables.Count <= 0)
+            {
+                var resultGroupedByColumn = dtProject.Rows.Cast<DataRow>().GroupBy(r => r["sortId"].ToString());//对索引为0的一列进行分组，结果是集合
+                if (resultGroupedByColumn != null && resultGroupedByColumn.Count() > 0)
+                {
+                    DataTable dt1 = dtProject.Clone();
+                    foreach (IGrouping<string, DataRow> rows in resultGroupedByColumn)
+                    {
+                        DataTable dataTable = rows.ToArray().CopyToDataTable();
+                        dt1.Merge(dataTable);
+                    }
+                    dtProject.Clear();
+                    dtProject.Merge(dt1);
+                }
+
+                //dtProject.DefaultView.Sort = "sortId asc";
+
+                ds.Tables.Add(dtProject);
+                ds.Tables.Add(dtModelSettings);
+                ds.Tables.Add(dtmodelDevices);
+                ds.Relations.Add(dtProject.Columns["ID"], dtModelSettings.Columns["ItemID"]);             
+            }
+            else
+            {
+                //ds.Tables.Clear();
+                //dtProject.DefaultView.Sort = "sortId asc";
+                var resultGroupedByColumn = dtProject.Rows.Cast<DataRow>().GroupBy(r => r["sortId"].ToString());//对索引为0的一列进行分组，结果是集合
+                if (resultGroupedByColumn != null && resultGroupedByColumn.Count() > 0)
+                {
+                    DataTable dt1 = dtProject.Clone();
+                    foreach (IGrouping<string, DataRow> rows in resultGroupedByColumn)
+                    {
+                        DataTable dataTable = rows.ToArray().CopyToDataTable();
+                        dt1.Merge(dataTable);
+                    }
+                    dtProject.Clear();
+                    dtProject.Merge(dt1);
+                }
+                ds.Clear();
+                ds.Tables[0].Merge(dtProject);
+                ds.Tables[1].Merge(dtModelSettings);
+                ds.Tables[2].Merge(dtmodelDevices);
+                
+            }
+            //ds.Clear();
+            //ds.Tables.Add(dtProject);
+            //ds.Tables.Add(dtModelSettings);
+            //ds.Tables.Add(dtmodelDevices);
+            //ds.Relations.Add(dtProject.Columns["ID"], dtModelSettings.Columns["ItemID"]);
+
+            CopyTotalPrice = 0;
+            Dictionary<Int64, int> indexList = new Dictionary<Int64, int>();
+            Dictionary<Int64, decimal> priceList = new Dictionary<Int64, decimal>();
+            foreach (DataRow itemRow in dtModelSettings.Rows)
+            {
+                Int64 itemID = Convert.ToInt64(itemRow["ItemID"]);
+                if (indexList.ContainsKey(itemID))
+                {
+                    indexList[itemID] = indexList[itemID] + 1;
+                }
+                else
+                {
+                    indexList.Add(itemID, 1);
+                }
+                itemRow["ID"] = indexList[itemID];
+
+                decimal price = Convert.ToDecimal(itemRow["TotalPrice"]);
+                CopyTotalPrice = CopyTotalPrice + price;
+                if (priceList.ContainsKey(itemID))
+                {
+                    priceList[itemID] = priceList[itemID] + price;
+                }
+                else
+                {
+                    priceList.Add(itemID, price);
+                }
+            }
+
+            //ProjectTableMemory Price
+            foreach (DataRow itemRow in dtProject.Rows)
+            {
+                Int64 itemID = Convert.ToInt64(itemRow["ID"]);
+                if (priceList.ContainsKey(itemID) == true)
+                {
+                    itemRow["Price"] = priceList[itemID];
+                }
+            }
+ 
+            return ds;
+        }
+
+        private decimal FillDevicesDataSource()
+        {
+            DataTable dtModelSettings = ds.Tables[1];
+            DBClass.GetInstance().ModelDeviceReportTable.Rows.Clear();
+            decimal allPrice = 0;
+            int index = 0;
+            foreach (DataRow itemRow in dtModelSettings.Rows)
+            {
+                string model = itemRow["Model"].ToString();
+                Int64 itemID = Convert.ToInt64(itemRow["ItemID"]);
+                int count = Convert.ToInt32(itemRow["Count"]);
+                decimal unitPrice = Convert.ToDecimal(itemRow["UnitPrice"]);
+                decimal totalPrice = Convert.ToDecimal(itemRow["TotalPrice"]);
+                allPrice = allPrice + totalPrice;
+
+                DataRow[] findRow = DBClass.GetInstance().ModelDeviceReportTable.Select(string.Format("Model = '{0}'", model));
+                if (findRow.Length == 0)
+                {
+                    DataRow newRow = DBClass.GetInstance().ModelDeviceReportTable.NewRow();
+                    newRow["ID"] = ++index;
+                    newRow["Model"] = model;
+                    newRow["ItemID"] = itemRow["ItemID"];
+                    newRow["Label"] = itemRow["Label"];
+                    newRow["Comment"] = itemRow["Comment"];
+                    newRow["Count"] = count;
+                    newRow["UnitPrice"] = itemRow["UnitPrice"];
+                    newRow["TotalPrice"] = itemRow["TotalPrice"];
+
+                    DBClass.GetInstance().ModelDeviceReportTable.Rows.Add(newRow);
+                }
+                else
+                {
+                    int formerCount = Convert.ToInt32(findRow[0]["Count"]);
+                    count = count + formerCount;
+                    decimal newTotalPrice = count * unitPrice;
+                    findRow[0]["Count"] = count;
+                    findRow[0]["TotalPrice"] = newTotalPrice;
+                }
+            }
+            return allPrice;
+
+            //DataTable dtModelDevic = ds.Tables[2];
+            //DataTable dtModelSettings = ds.Tables[1];
+
+            //dtModelDevic.Rows.Clear();
+            //decimal allPrice = 0;
+            //int index = 0;
+            //foreach (DataRow itemRow in dtModelSettings.Rows)
+            //{
+            //    string model = itemRow["Model"].ToString();
+            //    Int64 itemID = Convert.ToInt64(itemRow["ItemID"]);
+            //    int count = Convert.ToInt32(itemRow["Count"]);
+            //    decimal unitPrice = Convert.ToDecimal(itemRow["UnitPrice"]);
+            //    decimal totalPrice = Convert.ToDecimal(itemRow["TotalPrice"]);
+            //    allPrice = allPrice + totalPrice;
+
+            //    DataRow[] findRow = dtModelDevic.Select(string.Format("Model = '{0}'", model));
+            //    if (findRow.Length == 0)
+            //    {
+            //        DataRow newRow = dtModelDevic.NewRow();
+            //        newRow["ID"] = ++index;
+            //        newRow["Model"] = model;
+            //        newRow["ItemID"] = itemRow["ItemID"];
+            //        newRow["Label"] = itemRow["Label"];
+            //        newRow["Comment"] = itemRow["Comment"];
+            //        newRow["Count"] = count;
+            //        newRow["UnitPrice"] = itemRow["UnitPrice"];
+            //        newRow["TotalPrice"] = itemRow["TotalPrice"];
+
+            //        dtModelDevic.Rows.Add(newRow);
+            //    }
+            //    else
+            //    {
+            //        int formerCount = Convert.ToInt32(findRow[0]["Count"]);
+            //        count = count + formerCount;
+            //        decimal newTotalPrice = count * unitPrice;
+            //        findRow[0]["Count"] = count;
+            //        findRow[0]["TotalPrice"] = newTotalPrice;
+            //    }
+            //}
+            //return allPrice;
+        }
+        public Int64 GetCurrentTableID(DataTable dt)
+        {
+             
+            Int64 curMaxID = 0;
+            object curMaxObj = dt.Compute("Max(ID)", string.Format("Cat = 'Panel'"));
+            if (curMaxObj != DBNull.Value)
+            {
+                curMaxID = Convert.ToInt64(curMaxObj);
+            }
+            return curMaxID;
+        }
+
+        public Int64 GetCurrentTableIDColumn(DataTable dt)
+        {
+
+            Int64 curMaxID = 0;
+            object curMaxObj = dt.Compute("Max(sortId)", string.Format("Cat = 'Panel'"));
+            if (curMaxObj != DBNull.Value)
+            {
+                curMaxID = Convert.ToInt64(curMaxObj);
+            }
+            return curMaxID;
         }
     }
 }

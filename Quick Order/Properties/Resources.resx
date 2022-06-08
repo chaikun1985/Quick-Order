@@ -118,98 +118,98 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="主机背面__基础配置" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\主机配置图\主机背面__基础配置.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icon_产品配置" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_产品配置.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Icon_Checked" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icon_Checked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="带蜂鸣器底座" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\主机配置图\带蜂鸣器底座.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="主机背面__背板_空" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\主机配置图\主机背面__背板_空.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="pic_nomalform" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\pic_nomalform.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Icon_新建项目" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icon_新建项目.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_6000P_壁挂_主机开机正面__背板" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\主机配置图\6000P_壁挂_主机开机正面__背板.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Icon_Save" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icon_Save.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="主机开机正面_MB" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\主机配置图\主机开机正面_MB.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="pic_close" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\pic_close.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Icon_UnChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icon_UnChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Icon_新建" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icon_新建.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="主机开机正面__线槽_空" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\主机配置图\主机开机正面__线槽_空.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="主机正面_基础配置02" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\主机配置图\主机正面_基础配置02.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="主机背面__线槽_空" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\主机配置图\主机背面__线槽_空.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="LPI_modbus_3_0_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\主机配置图\LPI-modbus 3.0_1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="pic_min" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\pic_min.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="logo18" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\logo18.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="主机背面__Model" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\主机配置图\主机背面__Model.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="主机背面__线槽_有设备" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\主机配置图\主机背面__线槽_有设备.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Icon_UnChecked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icon_UnChecked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Icon_MainPage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icon_MainPage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="主机背面__背板_空" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\主机配置图\主机背面__背板_空.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icon_产品配置" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon_产品配置.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="普通底座" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\主机配置图\普通底座.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="主机背面__POM" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\主机配置图\主机背面__POM.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="编码器_CP900" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\主机配置图\编码器_CP900.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="主机开机正面_低速网卡" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\主机配置图\主机开机正面_低速网卡.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="pic_nomalform" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pic_nomalform.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="主机开机正面_LCM" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\主机配置图\主机开机正面_LCM.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="_6000P_壁挂_主机正面_基础配置" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\主机配置图\6000P_壁挂_主机正面_基础配置.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icon_保存" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon_保存.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icon_收缩" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon_收缩.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="主机背面__背板_有设备" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\主机配置图\主机背面__背板_有设备.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="BT_12M20AC" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\主机配置图\BT-12M20AC.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="主机开机正面__线槽_有设备" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\主机配置图\主机开机正面__线槽_有设备.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Icon_Back" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icon_Back.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Icon_Save" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icon_Save.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="主机开机正面_基础配置" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\主机配置图\主机开机正面_基础配置.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="_6000P_壁挂_主机正面_基础配置" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\主机配置图\6000P_壁挂_主机正面_基础配置.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="主机正面_基础配置02" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\主机配置图\主机正面_基础配置02.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="探测器" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\主机配置图\探测器.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="主机开机正面__线槽_有设备" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\主机配置图\主机开机正面__线槽_有设备.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Icon_Checked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icon_Checked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_6000P_壁挂_主机开机正面__背板" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\主机配置图\6000P_壁挂_主机开机正面__背板.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Icon_新建项目" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icon_新建项目.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="声光" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\主机配置图\声光.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Icon_新建" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icon_新建.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="主机开机正面__背板_有设备" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\主机配置图\主机开机正面__背板_有设备.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="主机正面_ACM" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\主机配置图\主机正面_ACM.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="编辑" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\编辑.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Icon_MainPage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icon_MainPage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="主机正面_打印机" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\主机配置图\主机正面_打印机.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pic_max" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pic_max.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="uncheckbox_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\uncheckbox_1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BT_12M20AC" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\主机配置图\BT-12M20AC.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="主机背面__背板_有设备" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\主机配置图\主机背面__背板_有设备.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="删除" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\删除.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -217,103 +217,175 @@
   <data name="主机正面_Pow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\主机配置图\主机正面_Pow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="主机开机正面_中速网卡" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\主机配置图\主机开机正面_中速网卡.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="主机背面__Model" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\主机配置图\主机背面__Model.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="QO_LOGO" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\QO_LOGO.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="主机正面_打印机" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\主机配置图\主机正面_打印机.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="LRS_WM_350_25" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\主机配置图\LRS-WM-350-25.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="主机背面___光纤网卡" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\主机配置图\主机背面__ 光纤网卡.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="主机开机正面__背板_有设备" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\主机配置图\主机开机正面__背板_有设备.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Icon_Menu" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icon_Menu.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="QO_LOGO1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\QO_LOGO.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="主机开机正面__背板_空" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\主机配置图\主机开机正面__背板_空.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="主机正面_ACM" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\主机配置图\主机正面_ACM.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="主机背面__线槽_空" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\主机配置图\主机背面__线槽_空.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="pic_max" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\pic_max.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="控制器" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\控制器.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="编辑" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\编辑.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="主机开机正面_黑盒子" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\主机配置图\主机开机正面_黑盒子.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="A" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\A.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="_6000P_壁挂_主机开机正面__基础配置" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\主机配置图\6000P_壁挂_主机开机正面__基础配置.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="主机正面_基础配置01" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\主机配置图\主机正面_基础配置01.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Icon_打印机" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icon_打印机.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="A" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\A.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="NCS" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\主机配置图\NCS.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="声光" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\主机配置图\声光.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="带蜂鸣器底座" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\主机配置图\带蜂鸣器底座.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="手动报警与按钮消火栓_安装盒" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\主机配置图\手动报警与按钮消火栓_安装盒.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="手动报警报警按钮" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\主机配置图\手动报警报警按钮.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="探测器" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\主机配置图\探测器.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="普通底座" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\主机配置图\普通底座.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Icon_Menu" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icon_Menu.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="楼层显示器含安装盒" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\主机配置图\楼层显示器含安装盒.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="模块" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\主机配置图\模块.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="消火栓报警按钮" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\主机配置图\消火栓报警按钮.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="编码器_CP900" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\主机配置图\编码器_CP900.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="主机背面__POM" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\主机配置图\主机背面__POM.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="主机开机正面_中速网卡" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\主机配置图\主机开机正面_中速网卡.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="logo18" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\logo18.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="主机开机正面_黑盒子" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\主机配置图\主机开机正面_黑盒子.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="主机背面__基础配置" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\主机配置图\主机背面__基础配置.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="QO_LOGO1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\QO_LOGO.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_收缩" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_收缩.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pic_min" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pic_min.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="主机开机正面__线槽_空" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\主机配置图\主机开机正面__线槽_空.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="主机开机正面_LCM" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\主机配置图\主机开机正面_LCM.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LRS_WM_350_25" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\主机配置图\LRS-WM-350-25.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="模块" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\主机配置图\模块.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="主机开机正面_低速网卡" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\主机配置图\主机开机正面_低速网卡.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="主机背面___光纤网卡" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\主机配置图\主机背面__ 光纤网卡.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_保存" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_保存.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="主机开机正面_MB" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\主机配置图\主机开机正面_MB.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="QO_LOGO" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\QO_LOGO.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="手动报警报警按钮" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\主机配置图\手动报警报警按钮.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="控制器" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\控制器.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Icon_Back" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icon_Back.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="主机开机正面__背板_空" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\主机配置图\主机开机正面__背板_空.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NCS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\主机配置图\NCS.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="主机正面_基础配置01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\主机配置图\主机正面_基础配置01.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pic_close" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pic_close.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Icon_打印机" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icon_打印机.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="网络显示器" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\主机配置图\网络显示器.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="主机背面__线槽_有设备" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\主机配置图\主机背面__线槽_有设备.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="手动报警与按钮消火栓_安装盒" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\主机配置图\手动报警与按钮消火栓_安装盒.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="NCA" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\主机配置图\NCA.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pic_max_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pic_max_1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="N_6000P_KIT_V3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\主机配置图\N_6000P_KIT_V3.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SCAB6P2U" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\主机配置图\SCAB-6P-2U.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LCM_2PG_ZJ" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\主机配置图\LCM_2PG_ZJ.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SCAB_6P_3U" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\主机配置图\SCAB_6P_3U.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BMP_6P" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\主机配置图\BMP_6P.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BT_12M20AC1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\主机配置图\BT-12M20AC.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BT_12M28AC" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\主机配置图\BT_12M28AC.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CPU_6000P_V3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\主机配置图\CPU_6000P_V3.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DXKZ_JXB_6P" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\主机配置图\DXKZ_JXB_6P.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DXKZ_MB_6P" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\主机配置图\DXKZ_MB_6P.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DXKZ_ZJ_6P" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\主机配置图\DXKZ_ZJ_6P.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LCM_2PG_ZJ1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\主机配置图\LCM_2PG_ZJ.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LRS_350_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\主机配置图\LRS_350_24.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LRS_WM_350_251" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\主机配置图\LRS-WM-350-25.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pic_min1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pic_min1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SCAB_6000P_V3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\主机配置图\SCAB_6000P_V3.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SCAB_6P_DR" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\主机配置图\SCAB_6P_DR.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DXKZ_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\主机配置图\DXKZ_16.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SCAB_6P_4U" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\主机配置图\SCAB_6P_4U.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="N6000P_DSP" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\主机配置图\N6000P_DSP.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_保存1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_保存1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="组663" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\组 663.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
