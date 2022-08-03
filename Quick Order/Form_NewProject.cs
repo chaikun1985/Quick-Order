@@ -75,7 +75,7 @@ namespace Quick_Order
 
         private void Form_NewProject_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Application.OpenForms["Form_Panel"].Close();
+            Application.OpenForms["Form_Main"].Close();
         }
     }
 }
